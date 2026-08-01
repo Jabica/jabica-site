@@ -98,26 +98,70 @@ const heroPhrases = [
   "Documentacao que vira acao.",
 ];
 
+type Theme = "dark" | "light";
+
 export default function Home() {
   const [typedText, setTypedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [theme, setTheme] = useState<Theme>("dark");
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("jabica-theme");
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+
+    setTheme(initialTheme);
+    document.documentElement.dataset.theme = initialTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => {
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+      document.documentElement.dataset.theme = nextTheme;
+      window.localStorage.setItem("jabica-theme", nextTheme);
+
+      return nextTheme;
+    });
+  };
 
   useEffect(() => {
     const revealItems = document.querySelectorAll<HTMLElement>(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+          const target = entry.target as HTMLElement;
+
+          if (entry.intersectionRatio >= 0.18) {
+            target.classList.add("is-visible");
           }
         });
       },
-      { threshold: 0.16 },
+      { rootMargin: "-6% 0px -12%", threshold: [0, 0.18] },
     );
 
-    revealItems.forEach((item) => observer.observe(item));
+    const staggerGroups = [
+      ".timeline",
+      ".pillar-grid",
+      ".work-list",
+      ".numbers",
+      ".tag-cloud",
+      ".contact-actions",
+    ];
+
+    revealItems.forEach((item) => {
+      const group = staggerGroups
+        .map((selector) => item.closest(selector))
+        .find(Boolean);
+
+      if (group) {
+        const siblings = Array.from(group.querySelectorAll<HTMLElement>(".reveal"));
+        const index = Math.max(siblings.indexOf(item), 0);
+        item.style.setProperty("--reveal-delay", `${index * 85}ms`);
+      }
+
+      observer.observe(item);
+    });
 
     const cards = document.querySelectorAll<HTMLElement>(".magnetic-card");
     const moveLight = (event: MouseEvent) => {
@@ -134,6 +178,21 @@ export default function Home() {
     cards.forEach((card) => card.addEventListener("mousemove", moveLight));
     window.addEventListener("mousemove", movePageLight, { passive: true });
 
+    const syncRevealState = () => {
+      revealItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const isHeroItem = Boolean(item.closest("#top"));
+        const resetOffsetAbove = Math.min(rect.height * 2.2, window.innerHeight * 1.6);
+        const resetOffsetBelow = Math.min(rect.height * 1.25, window.innerHeight * 1.1);
+        const isFarAbove = rect.bottom < -resetOffsetAbove;
+        const isFarBelow = rect.top > window.innerHeight + resetOffsetBelow;
+
+        if (!isHeroItem && (isFarAbove || isFarBelow)) {
+          item.classList.remove("is-visible");
+        }
+      });
+    };
+
     const setProgress = () => {
       const scrollMax =
         document.documentElement.scrollHeight - window.innerHeight;
@@ -142,6 +201,7 @@ export default function Home() {
         "--scroll-progress",
         `${Math.min(1, Math.max(0, progress)) * 100}%`,
       );
+      syncRevealState();
     };
 
     setProgress();
@@ -208,18 +268,28 @@ export default function Home() {
           <span className="brand-mark">J</span>
           <span>Gabriel Jabour</span>
         </a>
-        <nav aria-label="Navegacao principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#especialidades">Especialidades</a>
-          <a href="#entregas">Entregas</a>
-          <a href="#contato">Contato</a>
-        </nav>
+        <div className="header-actions">
+          <nav aria-label="Navegacao principal">
+            <a href="#sobre">Sobre</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#entregas">Entregas</a>
+            <a href="#contato">Contato</a>
+          </nav>
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Ativar ${theme === "dark" ? "light mode" : "dark mode"}`}
+          >
+            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
+        </div>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <span className="section-kicker reveal">00 / Perfil profissional</span>
-          <h1 className="hero-title reveal">
+          <span className="section-kicker reveal reveal-up">00 / Perfil profissional</span>
+          <h1 className="hero-title reveal reveal-left">
             Gabriel Jabour
             <span className="terminal-title" aria-live="polite">
               <span className="terminal-prompt">&gt;</span>
@@ -227,12 +297,12 @@ export default function Home() {
               <span className="terminal-cursor" aria-hidden="true" />
             </span>
           </h1>
-          <p className="hero-text reveal">
+          <p className="hero-text reveal reveal-up">
             Analista de Service Desk com trajetoria construida na operacao real
             de TI, atuando em suporte, infraestrutura, projetos corporativos e
             automacoes para reduzir retrabalho e aumentar confiabilidade.
           </p>
-          <div className="hero-actions reveal">
+          <div className="hero-actions reveal reveal-up">
             <a className="primary-action" href="#contato">
               Falar comigo
             </a>
@@ -242,14 +312,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-panel reveal magnetic-card">
+        <div className="hero-panel reveal reveal-right magnetic-card">
           <div className="panel-topline">
             <span>operational_profile.ts</span>
             <span>live</span>
           </div>
           <div className="panel-status">
             <span>status</span>
-            <strong>operacao, projetos e automacao em evolucao</strong>
+            <strong>Operacao, projetos e automacao em evolucao.</strong>
           </div>
           <div className="terminal-lines" aria-label="Resumo profissional">
             <p>
@@ -294,11 +364,11 @@ export default function Home() {
       </section>
 
       <section className="section-grid" id="sobre">
-        <div className="section-heading reveal">
+        <div className="section-heading reveal reveal-left">
           <span className="section-kicker">01 / Sobre</span>
           <h2>Carreira construida dentro da operacao.</h2>
         </div>
-        <div className="section-body reveal">
+        <div className="section-body reveal reveal-right">
           <p>
             Iniciei minha carreira em TI como jovem aprendiz na empresa onde
             atuo ate hoje. Foi minha primeira experiencia profissional em um
@@ -315,13 +385,13 @@ export default function Home() {
       </section>
 
       <section className="timeline-section">
-        <div className="section-heading reveal">
+        <div className="section-heading reveal reveal-left">
           <span className="section-kicker">02 / Linha do tempo</span>
           <h2>Do primeiro chamado aos projetos corporativos.</h2>
         </div>
         <div className="timeline">
           {timeline.map((item) => (
-            <article className="timeline-item reveal" key={item.title}>
+            <article className="timeline-item reveal reveal-up" key={item.title}>
               <span>{item.year}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -331,13 +401,13 @@ export default function Home() {
       </section>
 
       <section className="pillars" id="especialidades">
-        <div className="section-heading reveal">
+        <div className="section-heading reveal reveal-left">
           <span className="section-kicker">03 / Especialidades</span>
           <h2>Base tecnica para sustentar rotina critica.</h2>
         </div>
         <div className="pillar-grid">
           {pillars.map((pillar) => (
-            <article className="pillar-card reveal magnetic-card" key={pillar.title}>
+            <article className="pillar-card reveal reveal-up magnetic-card" key={pillar.title}>
               <span>{pillar.label}</span>
               <h3>{pillar.title}</h3>
               <p>{pillar.text}</p>
@@ -345,7 +415,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="tag-cloud reveal" aria-label="Competencias">
+        <div className="tag-cloud reveal reveal-up" aria-label="Competencias">
           {specialties.map((item) => (
             <span key={item}>{item}</span>
           ))}
@@ -353,13 +423,16 @@ export default function Home() {
       </section>
 
       <section className="works" id="entregas">
-        <div className="section-heading reveal">
+        <div className="section-heading reveal reveal-left">
           <span className="section-kicker">04 / Entregas</span>
           <h2>Projetos que mostram impacto alem do chamado.</h2>
         </div>
         <div className="work-list">
           {works.map((work, index) => (
-            <article className="work-card reveal" key={work.name}>
+            <article
+              className={`work-card reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}
+              key={work.name}
+            >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <div>
                 <p>{work.type}</p>
@@ -372,30 +445,30 @@ export default function Home() {
       </section>
 
       <section className="numbers">
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>400+</strong>
           <span>linhas corporativas migradas</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>9a</strong>
           <span>experiencia em Windows</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>6a</strong>
           <span>experiencia em macOS</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>3a</strong>
           <span>DLP e projetos de TI</span>
         </div>
       </section>
 
       <section className="works">
-        <div className="section-heading reveal">
+        <div className="section-heading reveal reveal-left">
           <span className="section-kicker">05 / Formacao</span>
           <h2>Formacao academica e certificacoes.</h2>
         </div>
-        <div className="tag-cloud reveal" aria-label="Formacao e certificacoes">
+        <div className="tag-cloud reveal reveal-up" aria-label="Formacao e certificacoes">
           {credentials.map((item) => (
             <span key={item}>{item}</span>
           ))}
@@ -403,7 +476,7 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contato">
-        <div className="contact-copy reveal">
+        <div className="contact-copy reveal reveal-left">
           <span className="section-kicker">06 / Contato</span>
           <h2>Escolha o melhor canal para falar comigo.</h2>
           <p>
@@ -411,7 +484,7 @@ export default function Home() {
             como apoio para ver historico e conexoes.
           </p>
         </div>
-        <div className="contact-actions reveal">
+        <div className="contact-actions reveal reveal-right">
           <a href="mailto:contato@jabica.com.br">
             <span>E-mail</span>
             contato@jabica.com.br
