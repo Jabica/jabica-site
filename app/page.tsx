@@ -126,8 +126,13 @@ export default function Home() {
       target.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
       target.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
     };
+    const movePageLight = (event: MouseEvent) => {
+      document.documentElement.style.setProperty("--page-mouse-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--page-mouse-y", `${event.clientY}px`);
+    };
 
     cards.forEach((card) => card.addEventListener("mousemove", moveLight));
+    window.addEventListener("mousemove", movePageLight, { passive: true });
 
     const setProgress = () => {
       const scrollMax =
@@ -145,6 +150,7 @@ export default function Home() {
     return () => {
       observer.disconnect();
       cards.forEach((card) => card.removeEventListener("mousemove", moveLight));
+      window.removeEventListener("mousemove", movePageLight);
       window.removeEventListener("scroll", setProgress);
     };
   }, []);
@@ -241,19 +247,43 @@ export default function Home() {
             <span>operational_profile.ts</span>
             <span>live</span>
           </div>
+          <div className="panel-status">
+            <span>status</span>
+            <strong>operacao, projetos e automacao em evolucao</strong>
+          </div>
           <div className="terminal-lines" aria-label="Resumo profissional">
             <p>
               <span>role</span> Analista de Service Desk
             </p>
             <p>
-              <span>base</span> Windows, macOS, DLP, redes e projetos
+              <span>company</span> Henry Schein Brazil / Dental Speed Graph
             </p>
             <p>
-              <span>impact</span> 400 linhas corporativas migradas
+              <span>projects</span> Avatar, DLP, softwares e telefonia corporativa
             </p>
             <p>
-              <span>growth</span> jovem aprendiz ate suporte tecnico
+              <span>security</span> protecao da empresa sem travar o usuario final
             </p>
+            <p>
+              <span>automation</span> IA, APIs, scripts, MCPs e documentacao viva
+            </p>
+            <p>
+              <span>education</span> Ciencia da Computacao - UNISUL / 2026
+            </p>
+          </div>
+          <div className="panel-metrics" aria-label="Indicadores profissionais">
+            <span>
+              <strong>400+</strong>
+              linhas migradas
+            </span>
+            <span>
+              <strong>9a</strong>
+              Windows
+            </span>
+            <span>
+              <strong>6a</strong>
+              macOS
+            </span>
           </div>
           <div className="signal-grid" aria-hidden="true">
             {Array.from({ length: 24 }).map((_, index) => (

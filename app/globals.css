@@ -11,6 +11,8 @@
   --signal: #5fe0bc;
   --signal-soft: rgba(95, 224, 188, 0.14);
   --amber: #d7a747;
+  --page-mouse-x: 50vw;
+  --page-mouse-y: 45vh;
   --scroll-progress: 0%;
 }
 
@@ -174,17 +176,42 @@ nav a:hover {
 
 main {
   overflow: hidden;
+  position: relative;
+}
+
+main > * {
+  position: relative;
+  z-index: 3;
+}
+
+main > .motion-field {
+  z-index: 2;
+}
+
+main::before {
+  background:
+    radial-gradient(
+      420px circle at var(--page-mouse-x) var(--page-mouse-y),
+      rgba(95, 224, 188, 0.055),
+      rgba(95, 224, 188, 0.018) 38%,
+      transparent 70%
+    );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
 }
 
 .hero {
-  align-items: end;
+  align-items: start;
   display: grid;
   gap: clamp(36px, 7vw, 96px);
   grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
   margin: 0 auto;
   max-width: 1440px;
-  min-height: 100vh;
-  padding: 96px clamp(22px, 6vw, 92px) 70px;
+  min-height: calc(100vh - 76px);
+  padding: 88px clamp(22px, 6vw, 92px) 70px;
 }
 
 .section-kicker {
@@ -291,7 +318,7 @@ main {
 
 .hero-panel {
   animation: panel-breathe 7s ease-in-out infinite;
-  align-self: stretch;
+  align-self: start;
   background:
     radial-gradient(
       420px circle at var(--mouse-x, 50%) var(--mouse-y, 42%),
@@ -332,11 +359,37 @@ main {
   z-index: 1;
 }
 
+.panel-status {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-status span {
+  color: var(--signal);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.panel-status strong {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .terminal-lines {
   border-left: 1px solid var(--line-strong);
   display: grid;
-  gap: 18px;
-  margin: 88px 0 36px;
+  gap: 10px;
+  margin: 22px 0 18px;
   padding-left: 22px;
   position: relative;
   z-index: 1;
@@ -344,8 +397,8 @@ main {
 
 .terminal-lines p {
   color: var(--ink-soft);
-  font-size: 0.96rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.42;
   margin: 0;
 }
 
@@ -358,9 +411,39 @@ main {
   text-transform: uppercase;
 }
 
-.signal-grid {
+.panel-metrics {
   display: grid;
   gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-metrics span {
+  background: rgba(13, 17, 16, 0.42);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  line-height: 1.2;
+  padding: 8px;
+  text-transform: uppercase;
+}
+
+.panel-metrics strong {
+  color: var(--ink);
+  display: block;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.18rem;
+  line-height: 0.95;
+  margin-bottom: 6px;
+}
+
+.signal-grid {
+  display: grid;
+  gap: 7px;
   grid-template-columns: repeat(8, 1fr);
   position: relative;
   z-index: 1;
@@ -371,7 +454,7 @@ main {
   aspect-ratio: 1;
   background: rgba(238, 242, 232, 0.08);
   border-radius: 2px;
-  transform: scale(0.76);
+  transform: scale(0.68);
 }
 
 .signal-grid span:nth-child(3n) {
