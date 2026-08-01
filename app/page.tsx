@@ -2,122 +2,404 @@
 
 import { useEffect, useState } from "react";
 
-const timeline = [
-  {
-    year: "01",
-    title: "Inicio como jovem aprendiz",
-    text: "Primeira experiencia corporativa em TI, com adaptacao rapida, senso de urgencia e crescimento dentro da mesma empresa.",
-  },
-  {
-    year: "02",
-    title: "Service Desk e suporte tecnico",
-    text: "Atendimento a colaboradores, resolucao de chamados, implantacao de softwares e resposta a demandas emergenciais.",
-  },
-  {
-    year: "03",
-    title: "Projetos corporativos",
-    text: "Apoio ao Projeto Avatar com Senior Sistemas, operacao de DLP, servidores de impressao e novos projetos de TI.",
-  },
-  {
-    year: "04",
-    title: "Automacao e evolucao tecnica",
-    text: "Uso de APIs, documentacao e agentes para reduzir retrabalho, melhorar rastreabilidade e apoiar decisoes operacionais.",
-  },
-];
+type Theme = "dark" | "light";
+type Language = "pt" | "en";
 
-const specialties = [
-  "Service Desk",
-  "Windows",
-  "macOS",
-  "DLP",
-  "Projetos de TI",
-  "Servidores de impressao",
-  "VLANs",
-  "Switches",
-  "Data centers",
-  "Movidesk API",
-  "FortiClient EMS",
-  "Pentest em formacao",
-  "PowerShell",
-];
-
-const pillars = [
-  {
-    label: "Suporte",
-    title: "Resolucao sob pressao",
-    text: "Atendimento tecnico em ambiente corporativo, com foco em urgencia, clareza e continuidade da operacao.",
+const content = {
+  pt: {
+    nav: ["Sobre", "Especialidades", "Entregas", "Contato"],
+    heroPhrases: [
+      "Service Desk em operacao real.",
+      "Automacoes para reduzir retrabalho.",
+      "Projetos de TI com impacto.",
+      "DLP sem impactar usuario final.",
+      "IA aplicada ao dia a dia.",
+      "Documentacao que vira acao.",
+    ],
+    hero: {
+      kicker: "00 / Perfil profissional",
+      text: "Analista de Service Desk com trajetoria construida na operacao real de TI, atuando em suporte, infraestrutura, projetos corporativos e automacoes para reduzir retrabalho e aumentar confiabilidade.",
+      primary: "Falar comigo",
+      secondary: "Ver entregas",
+    },
+    panel: {
+      status: "Operacao, projetos e automacao em evolucao.",
+      role: "Analista de Service Desk",
+      company: "Henry Schein Brazil / Dental Speed Graph",
+      projects: "Avatar, DLP, softwares e telefonia corporativa",
+      security: "protecao da empresa sem travar o usuario final",
+      automation: "IA, APIs, scripts, MCPs e documentacao viva",
+      education: "Ciencia da Computacao - UNISUL / 2026",
+      metrics: ["linhas migradas", "Windows", "macOS"],
+    },
+    about: {
+      kicker: "01 / Sobre",
+      title: "Carreira construida dentro da operacao.",
+      paragraphs: [
+        "Iniciei minha carreira em TI como jovem aprendiz na empresa onde atuo ate hoje. Foi minha primeira experiencia profissional em um ambiente corporativo, onde encontrei afinidade com atendimento, situacoes emergenciais e resolucao de problemas.",
+        "Com o tempo, cresci para atuar em suporte tecnico, implantacao de softwares, projetos de TI, DLP, redes e automacoes. Minha forma de trabalhar combina execucao pratica, comunicacao clara e validacao do resultado.",
+      ],
+    },
+    timelineTitle: {
+      kicker: "02 / Linha do tempo",
+      title: "Do primeiro chamado aos projetos corporativos.",
+    },
+    timeline: [
+      {
+        year: "01",
+        title: "Inicio como jovem aprendiz",
+        text: "Primeira experiencia corporativa em TI, com adaptacao rapida, senso de urgencia e crescimento dentro da mesma empresa.",
+      },
+      {
+        year: "02",
+        title: "Service Desk e suporte tecnico",
+        text: "Atendimento a colaboradores, resolucao de chamados, implantacao de softwares e resposta a demandas emergenciais.",
+      },
+      {
+        year: "03",
+        title: "Projetos corporativos",
+        text: "Apoio ao Projeto Avatar com Senior Sistemas, operacao de DLP, servidores de impressao e novos projetos de TI.",
+      },
+      {
+        year: "04",
+        title: "Automacao e evolucao tecnica",
+        text: "Uso de APIs, documentacao e agentes para reduzir retrabalho, melhorar rastreabilidade e apoiar decisoes operacionais.",
+      },
+    ],
+    pillarsTitle: {
+      kicker: "03 / Especialidades",
+      title: "Base tecnica para sustentar rotina critica.",
+    },
+    pillars: [
+      {
+        label: "Suporte",
+        title: "Resolucao sob pressao",
+        text: "Atendimento tecnico em ambiente corporativo, com foco em urgencia, clareza e continuidade da operacao.",
+      },
+      {
+        label: "Infraestrutura",
+        title: "Base tecnica de campo",
+        text: "Windows, macOS, impressao, redes, switches, VLANs, DLP e nocao pratica de ambientes corporativos.",
+      },
+      {
+        label: "Projetos",
+        title: "Execucao com resultado",
+        text: "Implantacoes, integracoes, telefonia corporativa e automacoes que conectam rotina tecnica a impacto real.",
+      },
+    ],
+    specialties: [
+      "Service Desk",
+      "Windows",
+      "macOS",
+      "DLP",
+      "Projetos de TI",
+      "Servidores de impressao",
+      "VLANs",
+      "Switches",
+      "Data centers",
+      "Movidesk API",
+      "FortiClient EMS",
+      "Pentest em formacao",
+      "PowerShell",
+    ],
+    worksTitle: {
+      kicker: "04 / Entregas",
+      title: "Projetos que mostram impacto alem do chamado.",
+    },
+    works: [
+      {
+        name: "Migracao de 400 linhas corporativas",
+        type: "Telefonia",
+        text: "Gestao diaria de chips, portabilidade, negociacao com operadora e logistica para colaboradores remotos e de outros estados.",
+      },
+      {
+        name: "Projeto Avatar / Senior Sistemas",
+        type: "Integracao",
+        text: "Suporte tecnico de prontidao para demandas presenciais, lentidoes reportadas e otimizacoes durante implantacao de novo sistema.",
+      },
+      {
+        name: "Implantacao de softwares e DLP",
+        type: "Projetos de TI",
+        text: "Configuracao, suporte e operacao de ferramentas corporativas, com foco em seguranca para a empresa sem impactar o usuario final.",
+      },
+      {
+        name: "Automacoes e briefings operacionais",
+        type: "Automacao",
+        text: "Estudos com IA, APIs, scripts, MCPs e documentacao para aperfeicoar fluxos, melhorar o dia a dia e elevar a experiencia dos usuarios.",
+      },
+    ],
+    numbers: [
+      "linhas corporativas migradas",
+      "experiencia em Windows",
+      "experiencia em macOS",
+      "DLP e projetos de TI",
+    ],
+    credentialsTitle: {
+      kicker: "05 / Formacao",
+      title: "Formacao academica e certificacoes.",
+    },
+    credentials: [
+      "Ciencia da Computacao - UNISUL, termino previsto em dez/2026",
+      "Inovacao, Sustentabilidade e Competitividade Empresarial - 160h",
+      "Sistemas Distribuidos e Moveis - 160h",
+      "Ingles avancado em escrita e intermediario em comunicacao verbal",
+    ],
+    contact: {
+      kicker: "06 / Contato",
+      title: "Escolha o melhor canal para falar comigo.",
+      text: "Para contato profissional, use e-mail ou WhatsApp. O LinkedIn fica como apoio para ver historico e conexoes.",
+      whatsapp: "Clique aqui para conversar pelo WhatsApp",
+      professional: "Rede profissional",
+    },
   },
-  {
-    label: "Infraestrutura",
-    title: "Base tecnica de campo",
-    text: "Windows, macOS, impressao, redes, switches, VLANs, DLP e nocao pratica de ambientes corporativos.",
+  en: {
+    nav: ["About", "Specialties", "Work", "Contact"],
+    heroPhrases: [
+      "Service Desk in real operations.",
+      "Automation that reduces rework.",
+      "IT projects with impact.",
+      "DLP without hurting users.",
+      "AI applied to daily work.",
+      "Documentation that becomes action.",
+    ],
+    hero: {
+      kicker: "00 / Professional profile",
+      text: "Service Desk Analyst with a career built inside real IT operations, working across support, infrastructure, corporate projects and automation to reduce rework and increase reliability.",
+      primary: "Contact me",
+      secondary: "View work",
+    },
+    panel: {
+      status: "Operations, projects and automation in progress.",
+      role: "Service Desk Analyst",
+      company: "Henry Schein Brazil / Dental Speed Graph",
+      projects: "Avatar, DLP, software and corporate telephony",
+      security: "company protection without slowing down end users",
+      automation: "AI, APIs, scripts, MCPs and living documentation",
+      education: "Computer Science - UNISUL / 2026",
+      metrics: ["lines migrated", "Windows", "macOS"],
+    },
+    about: {
+      kicker: "01 / About",
+      title: "A career built inside operations.",
+      paragraphs: [
+        "I started my IT career as a young apprentice at the company where I still work today. It was my first professional experience in a corporate environment, where I connected with support, urgent situations and problem solving.",
+        "Over time, I grew into technical support, software deployment, IT projects, DLP, networks and automation. My way of working combines practical execution, clear communication and result validation.",
+      ],
+    },
+    timelineTitle: {
+      kicker: "02 / Timeline",
+      title: "From the first ticket to corporate projects.",
+    },
+    timeline: [
+      {
+        year: "01",
+        title: "Started as a young apprentice",
+        text: "First corporate IT experience, with fast adaptation, urgency and growth inside the same company.",
+      },
+      {
+        year: "02",
+        title: "Service Desk and technical support",
+        text: "Employee support, ticket resolution, software deployment and response to urgent demands.",
+      },
+      {
+        year: "03",
+        title: "Corporate projects",
+        text: "Support for the Avatar project with Senior Sistemas, DLP operations, print servers and new IT projects.",
+      },
+      {
+        year: "04",
+        title: "Automation and technical growth",
+        text: "Use of APIs, documentation and agents to reduce rework, improve traceability and support operational decisions.",
+      },
+    ],
+    pillarsTitle: {
+      kicker: "03 / Specialties",
+      title: "Technical foundation for critical routines.",
+    },
+    pillars: [
+      {
+        label: "Support",
+        title: "Resolution under pressure",
+        text: "Technical support in a corporate environment, focused on urgency, clarity and operational continuity.",
+      },
+      {
+        label: "Infrastructure",
+        title: "Hands-on technical base",
+        text: "Windows, macOS, printing, networks, switches, VLANs, DLP and practical knowledge of corporate environments.",
+      },
+      {
+        label: "Projects",
+        title: "Execution with results",
+        text: "Deployments, integrations, corporate telephony and automations that connect technical routine to real impact.",
+      },
+    ],
+    specialties: [
+      "Service Desk",
+      "Windows",
+      "macOS",
+      "DLP",
+      "IT Projects",
+      "Print servers",
+      "VLANs",
+      "Switches",
+      "Data centers",
+      "Movidesk API",
+      "FortiClient EMS",
+      "Pentest training",
+      "PowerShell",
+    ],
+    worksTitle: {
+      kicker: "04 / Work",
+      title: "Projects that show impact beyond the ticket.",
+    },
+    works: [
+      {
+        name: "Migration of 400 corporate lines",
+        type: "Telephony",
+        text: "Daily management of SIM cards, portability, carrier negotiation and logistics for remote employees and other states.",
+      },
+      {
+        name: "Avatar / Senior Sistemas project",
+        type: "Integration",
+        text: "Standby technical support for on-site demands, reported slowness and optimizations during a new system rollout.",
+      },
+      {
+        name: "Software and DLP deployment",
+        type: "IT Projects",
+        text: "Configuration, support and operation of corporate tools, focused on company security without impacting end users.",
+      },
+      {
+        name: "Automation and operational briefings",
+        type: "Automation",
+        text: "Studies with AI, APIs, scripts, MCPs and documentation to improve flows, daily work and the user experience.",
+      },
+    ],
+    numbers: [
+      "corporate lines migrated",
+      "experience with Windows",
+      "experience with macOS",
+      "DLP and IT projects",
+    ],
+    credentialsTitle: {
+      kicker: "05 / Education",
+      title: "Academic background and certifications.",
+    },
+    credentials: [
+      "Computer Science - UNISUL, expected completion in Dec/2026",
+      "Innovation, Sustainability and Business Competitiveness - 160h",
+      "Distributed and Mobile Systems - 160h",
+      "Advanced written English and intermediate verbal communication",
+    ],
+    contact: {
+      kicker: "06 / Contact",
+      title: "Choose the best channel to reach me.",
+      text: "For professional contact, use email or WhatsApp. LinkedIn is available as support for history and connections.",
+      whatsapp: "Click here to talk on WhatsApp",
+      professional: "Professional network",
+    },
   },
-  {
-    label: "Projetos",
-    title: "Execucao com resultado",
-    text: "Implantacoes, integracoes, telefonia corporativa e automacoes que conectam rotina tecnica a impacto real.",
-  },
-];
-
-const works = [
-  {
-    name: "Migracao de 400 linhas corporativas",
-    type: "Telefonia",
-    text: "Gestao diaria de chips, portabilidade, negociacao com operadora e logistica para colaboradores remotos e de outros estados.",
-  },
-  {
-    name: "Projeto Avatar / Senior Sistemas",
-    type: "Integracao",
-    text: "Suporte tecnico de prontidao para demandas presenciais, lentidoes reportadas e otimizacoes durante implantacao de novo sistema.",
-  },
-  {
-    name: "Implantacao de softwares e DLP",
-    type: "Projetos de TI",
-    text: "Configuracao, suporte e operacao de ferramentas corporativas, com foco em seguranca para a empresa sem impactar o usuario final.",
-  },
-  {
-    name: "Automacoes e briefings operacionais",
-    type: "Automacao",
-    text: "Estudos com IA, APIs, scripts, MCPs e documentacao para aperfeicoar fluxos, melhorar o dia a dia e elevar a experiencia dos usuarios.",
-  },
-];
-
-const credentials = [
-  "Ciencia da Computacao - UNISUL, termino previsto em dez/2026",
-  "Inovacao, Sustentabilidade e Competitividade Empresarial - 160h",
-  "Sistemas Distribuidos e Moveis - 160h",
-  "Ingles avancado em escrita e intermediario em comunicacao verbal",
-];
-
-const heroPhrases = [
-  "Service Desk em operacao real.",
-  "Automacoes para reduzir retrabalho.",
-  "Projetos de TI com impacto.",
-  "DLP sem impactar usuario final.",
-  "IA aplicada ao dia a dia.",
-  "Documentacao que vira acao.",
-];
+} satisfies Record<Language, Record<string, unknown>>;
 
 export default function Home() {
   const [typedText, setTypedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [language, setLanguage] = useState<Language>("pt");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentContent = content[language];
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("jabica-theme");
+    const savedLanguage = window.localStorage.getItem("jabica-language");
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+    const initialLanguage = savedLanguage === "en" ? "en" : "pt";
+
+    document.documentElement.dataset.theme = initialTheme;
+    document.documentElement.lang = initialLanguage === "pt" ? "pt-BR" : "en";
+
+    const timeout = window.setTimeout(() => {
+      setTheme(initialTheme);
+      setLanguage(initialLanguage);
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
+  }, []);
+
+  const toggleTheme = () => {
+    setIsMenuOpen(false);
+    setTheme((currentTheme) => {
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+      document.documentElement.dataset.theme = nextTheme;
+      window.localStorage.setItem("jabica-theme", nextTheme);
+
+      return nextTheme;
+    });
+  };
+
+  const toggleLanguage = () => {
+    setIsMenuOpen(false);
+    setLanguage((currentLanguage) => {
+      const nextLanguage = currentLanguage === "pt" ? "en" : "pt";
+
+      setTypedText("");
+      setPhraseIndex(0);
+      setIsDeleting(false);
+      document.documentElement.lang = nextLanguage === "pt" ? "pt-BR" : "en";
+      window.localStorage.setItem("jabica-language", nextLanguage);
+
+      return nextLanguage;
+    });
+  };
+
+  const handleBrandClick = () => {
+    if (window.matchMedia("(max-width: 700px)").matches) {
+      setIsMenuOpen((current) => !current);
+      return;
+    }
+
+    setIsMenuOpen(false);
+    document.getElementById("top")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const revealItems = document.querySelectorAll<HTMLElement>(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+          const target = entry.target as HTMLElement;
+
+          if (entry.intersectionRatio >= 0.18) {
+            target.classList.add("is-visible");
           }
         });
       },
-      { threshold: 0.16 },
+      { rootMargin: "-6% 0px -12%", threshold: [0, 0.18] },
     );
 
-    revealItems.forEach((item) => observer.observe(item));
+    const staggerGroups = [
+      ".timeline",
+      ".pillar-grid",
+      ".work-list",
+      ".numbers",
+      ".tag-cloud",
+      ".contact-actions",
+    ];
+
+    revealItems.forEach((item) => {
+      const group = staggerGroups
+        .map((selector) => item.closest(selector))
+        .find(Boolean);
+
+      if (group) {
+        const siblings = Array.from(group.querySelectorAll<HTMLElement>(".reveal"));
+        const index = Math.max(siblings.indexOf(item), 0);
+        item.style.setProperty("--reveal-delay", `${index * 85}ms`);
+      }
+
+      observer.observe(item);
+    });
 
     const cards = document.querySelectorAll<HTMLElement>(".magnetic-card");
     const moveLight = (event: MouseEvent) => {
@@ -134,6 +416,21 @@ export default function Home() {
     cards.forEach((card) => card.addEventListener("mousemove", moveLight));
     window.addEventListener("mousemove", movePageLight, { passive: true });
 
+    const syncRevealState = () => {
+      revealItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const isHeroItem = Boolean(item.closest("#top"));
+        const resetOffsetAbove = Math.min(rect.height * 2.2, window.innerHeight * 1.6);
+        const resetOffsetBelow = Math.min(rect.height * 2, window.innerHeight * 1.45);
+        const isFarAbove = rect.bottom < -resetOffsetAbove;
+        const isFarBelow = rect.top > window.innerHeight + resetOffsetBelow;
+
+        if (!isHeroItem && (isFarAbove || isFarBelow)) {
+          item.classList.remove("is-visible");
+        }
+      });
+    };
+
     const setProgress = () => {
       const scrollMax =
         document.documentElement.scrollHeight - window.innerHeight;
@@ -142,6 +439,7 @@ export default function Home() {
         "--scroll-progress",
         `${Math.min(1, Math.max(0, progress)) * 100}%`,
       );
+      syncRevealState();
     };
 
     setProgress();
@@ -153,15 +451,17 @@ export default function Home() {
       window.removeEventListener("mousemove", movePageLight);
       window.removeEventListener("scroll", setProgress);
     };
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setTypedText(heroPhrases[0]);
-      return;
+      const timeout = window.setTimeout(() => {
+        setTypedText(currentContent.heroPhrases[0]);
+      }, 0);
+      return () => window.clearTimeout(timeout);
     }
 
-    const phrase = heroPhrases[phraseIndex];
+    const phrase = currentContent.heroPhrases[phraseIndex] ?? currentContent.heroPhrases[0];
 
     if (!isDeleting && typedText.length < phrase.length) {
       const timeout = window.setTimeout(() => {
@@ -186,11 +486,11 @@ export default function Home() {
 
     const timeout = window.setTimeout(() => {
       setIsDeleting(false);
-      setPhraseIndex((current) => (current + 1) % heroPhrases.length);
+      setPhraseIndex((current) => (current + 1) % currentContent.heroPhrases.length);
     }, 260);
 
     return () => window.clearTimeout(timeout);
-  }, [isDeleting, phraseIndex, typedText]);
+  }, [currentContent.heroPhrases, isDeleting, phraseIndex, typedText]);
 
   return (
     <main>
@@ -203,23 +503,61 @@ export default function Home() {
         <span />
       </div>
 
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Gabriel Jabour">
+      <header className={`site-header ${isMenuOpen ? "is-open" : ""}`}>
+        <button
+          className="brand"
+          type="button"
+          onClick={handleBrandClick}
+          aria-expanded={isMenuOpen}
+          aria-controls="header-menu"
+          aria-label={isMenuOpen ? "Fechar menu" : "Voltar ao topo ou abrir menu"}
+        >
           <span className="brand-mark">J</span>
           <span>Gabriel Jabour</span>
-        </a>
-        <nav aria-label="Navegacao principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#especialidades">Especialidades</a>
-          <a href="#entregas">Entregas</a>
-          <a href="#contato">Contato</a>
-        </nav>
+        </button>
+        <div className="brand-controls">
+          <button
+            className="theme-toggle language-toggle"
+            type="button"
+            onClick={toggleLanguage}
+            aria-label={`Switch language to ${language === "pt" ? "English" : "Portuguese"}`}
+          >
+            <span>{language === "pt" ? "EN" : "PT"}</span>
+          </button>
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Ativar ${theme === "dark" ? "light mode" : "dark mode"}`}
+          >
+            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
+        </div>
+        <div
+          className={`header-actions ${isMenuOpen ? "is-open" : ""}`}
+          id="header-menu"
+        >
+          <nav aria-label="Navegacao principal">
+            <a href="#sobre" onClick={() => setIsMenuOpen(false)}>
+              {currentContent.nav[0]}
+            </a>
+            <a href="#especialidades" onClick={() => setIsMenuOpen(false)}>
+              {currentContent.nav[1]}
+            </a>
+            <a href="#entregas" onClick={() => setIsMenuOpen(false)}>
+              {currentContent.nav[2]}
+            </a>
+            <a href="#contato" onClick={() => setIsMenuOpen(false)}>
+              {currentContent.nav[3]}
+            </a>
+          </nav>
+        </div>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <span className="section-kicker reveal">00 / Perfil profissional</span>
-          <h1 className="hero-title reveal">
+          <span className="section-kicker reveal reveal-up">{currentContent.hero.kicker}</span>
+          <h1 className="hero-title reveal reveal-left">
             Gabriel Jabour
             <span className="terminal-title" aria-live="polite">
               <span className="terminal-prompt">&gt;</span>
@@ -227,62 +565,58 @@ export default function Home() {
               <span className="terminal-cursor" aria-hidden="true" />
             </span>
           </h1>
-          <p className="hero-text reveal">
-            Analista de Service Desk com trajetoria construida na operacao real
-            de TI, atuando em suporte, infraestrutura, projetos corporativos e
-            automacoes para reduzir retrabalho e aumentar confiabilidade.
-          </p>
-          <div className="hero-actions reveal">
+          <p className="hero-text reveal reveal-up">{currentContent.hero.text}</p>
+          <div className="hero-actions reveal reveal-up">
             <a className="primary-action" href="#contato">
-              Falar comigo
+              {currentContent.hero.primary}
             </a>
             <a className="secondary-action" href="#entregas">
-              Ver entregas
+              {currentContent.hero.secondary}
             </a>
           </div>
         </div>
 
-        <div className="hero-panel reveal magnetic-card">
+        <div className="hero-panel reveal reveal-right magnetic-card">
           <div className="panel-topline">
             <span>operational_profile.ts</span>
             <span>live</span>
           </div>
           <div className="panel-status">
             <span>status</span>
-            <strong>operacao, projetos e automacao em evolucao</strong>
+            <strong>{currentContent.panel.status}</strong>
           </div>
           <div className="terminal-lines" aria-label="Resumo profissional">
             <p>
-              <span>role</span> Analista de Service Desk
+              <span>role</span> {currentContent.panel.role}
             </p>
             <p>
-              <span>company</span> Henry Schein Brazil / Dental Speed Graph
+              <span>company</span> {currentContent.panel.company}
             </p>
             <p>
-              <span>projects</span> Avatar, DLP, softwares e telefonia corporativa
+              <span>projects</span> {currentContent.panel.projects}
             </p>
             <p>
-              <span>security</span> protecao da empresa sem travar o usuario final
+              <span>security</span> {currentContent.panel.security}
             </p>
             <p>
-              <span>automation</span> IA, APIs, scripts, MCPs e documentacao viva
+              <span>automation</span> {currentContent.panel.automation}
             </p>
             <p>
-              <span>education</span> Ciencia da Computacao - UNISUL / 2026
+              <span>education</span> {currentContent.panel.education}
             </p>
           </div>
           <div className="panel-metrics" aria-label="Indicadores profissionais">
             <span>
               <strong>400+</strong>
-              linhas migradas
+              {currentContent.panel.metrics[0]}
             </span>
             <span>
               <strong>9a</strong>
-              Windows
+              {currentContent.panel.metrics[1]}
             </span>
             <span>
               <strong>6a</strong>
-              macOS
+              {currentContent.panel.metrics[2]}
             </span>
           </div>
           <div className="signal-grid" aria-hidden="true">
@@ -294,34 +628,25 @@ export default function Home() {
       </section>
 
       <section className="section-grid" id="sobre">
-        <div className="section-heading reveal">
-          <span className="section-kicker">01 / Sobre</span>
-          <h2>Carreira construida dentro da operacao.</h2>
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.about.kicker}</span>
+          <h2>{currentContent.about.title}</h2>
         </div>
-        <div className="section-body reveal">
-          <p>
-            Iniciei minha carreira em TI como jovem aprendiz na empresa onde
-            atuo ate hoje. Foi minha primeira experiencia profissional em um
-            ambiente corporativo, onde encontrei afinidade com atendimento,
-            situacoes emergenciais e resolucao de problemas.
-          </p>
-          <p>
-            Com o tempo, cresci para atuar em suporte tecnico, implantacao de
-            softwares, projetos de TI, DLP, redes e automacoes. Minha forma de
-            trabalhar combina execucao pratica, comunicacao clara e validacao
-            do resultado.
-          </p>
+        <div className="section-body reveal reveal-right">
+          {currentContent.about.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </section>
 
       <section className="timeline-section">
-        <div className="section-heading reveal">
-          <span className="section-kicker">02 / Linha do tempo</span>
-          <h2>Do primeiro chamado aos projetos corporativos.</h2>
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.timelineTitle.kicker}</span>
+          <h2>{currentContent.timelineTitle.title}</h2>
         </div>
         <div className="timeline">
-          {timeline.map((item) => (
-            <article className="timeline-item reveal" key={item.title}>
+          {currentContent.timeline.map((item, index) => (
+            <article className="timeline-item reveal reveal-up" key={index}>
               <span>{item.year}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -331,13 +656,13 @@ export default function Home() {
       </section>
 
       <section className="pillars" id="especialidades">
-        <div className="section-heading reveal">
-          <span className="section-kicker">03 / Especialidades</span>
-          <h2>Base tecnica para sustentar rotina critica.</h2>
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.pillarsTitle.kicker}</span>
+          <h2>{currentContent.pillarsTitle.title}</h2>
         </div>
         <div className="pillar-grid">
-          {pillars.map((pillar) => (
-            <article className="pillar-card reveal magnetic-card" key={pillar.title}>
+          {currentContent.pillars.map((pillar, index) => (
+            <article className="pillar-card reveal reveal-up magnetic-card" key={index}>
               <span>{pillar.label}</span>
               <h3>{pillar.title}</h3>
               <p>{pillar.text}</p>
@@ -345,21 +670,24 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="tag-cloud reveal" aria-label="Competencias">
-          {specialties.map((item) => (
-            <span key={item}>{item}</span>
+        <div className="tag-cloud reveal reveal-up" aria-label="Competencias">
+          {currentContent.specialties.map((item, index) => (
+            <span key={index}>{item}</span>
           ))}
         </div>
       </section>
 
       <section className="works" id="entregas">
-        <div className="section-heading reveal">
-          <span className="section-kicker">04 / Entregas</span>
-          <h2>Projetos que mostram impacto alem do chamado.</h2>
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.worksTitle.kicker}</span>
+          <h2>{currentContent.worksTitle.title}</h2>
         </div>
         <div className="work-list">
-          {works.map((work, index) => (
-            <article className="work-card reveal" key={work.name}>
+          {currentContent.works.map((work, index) => (
+            <article
+              className={`work-card reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}
+              key={index}
+            >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <div>
                 <p>{work.type}</p>
@@ -372,46 +700,43 @@ export default function Home() {
       </section>
 
       <section className="numbers">
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>400+</strong>
-          <span>linhas corporativas migradas</span>
+          <span>{currentContent.numbers[0]}</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>9a</strong>
-          <span>experiencia em Windows</span>
+          <span>{currentContent.numbers[1]}</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>6a</strong>
-          <span>experiencia em macOS</span>
+          <span>{currentContent.numbers[2]}</span>
         </div>
-        <div className="number-card reveal">
+        <div className="number-card reveal reveal-up">
           <strong>3a</strong>
-          <span>DLP e projetos de TI</span>
+          <span>{currentContent.numbers[3]}</span>
         </div>
       </section>
 
       <section className="works">
-        <div className="section-heading reveal">
-          <span className="section-kicker">05 / Formacao</span>
-          <h2>Formacao academica e certificacoes.</h2>
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.credentialsTitle.kicker}</span>
+          <h2>{currentContent.credentialsTitle.title}</h2>
         </div>
-        <div className="tag-cloud reveal" aria-label="Formacao e certificacoes">
-          {credentials.map((item) => (
-            <span key={item}>{item}</span>
+        <div className="tag-cloud reveal reveal-up" aria-label="Formacao e certificacoes">
+          {currentContent.credentials.map((item, index) => (
+            <span key={index}>{item}</span>
           ))}
         </div>
       </section>
 
       <section className="contact" id="contato">
-        <div className="contact-copy reveal">
-          <span className="section-kicker">06 / Contato</span>
-          <h2>Escolha o melhor canal para falar comigo.</h2>
-          <p>
-            Para contato profissional, use e-mail ou WhatsApp. O LinkedIn fica
-            como apoio para ver historico e conexoes.
-          </p>
+        <div className="contact-copy reveal reveal-left">
+          <span className="section-kicker">{currentContent.contact.kicker}</span>
+          <h2>{currentContent.contact.title}</h2>
+          <p>{currentContent.contact.text}</p>
         </div>
-        <div className="contact-actions reveal">
+        <div className="contact-actions reveal reveal-right">
           <a href="mailto:contato@jabica.com.br">
             <span>E-mail</span>
             contato@jabica.com.br
@@ -422,10 +747,10 @@ export default function Home() {
             rel="noreferrer"
           >
             <span>WhatsApp</span>
-            Clique aqui para conversar pelo WhatsApp
+            {currentContent.contact.whatsapp}
           </a>
           <a href="https://github.com/Jabica" target="_blank" rel="noreferrer">
-            <span>Rede profissional</span>
+            <span>{currentContent.contact.professional}</span>
             GitHub
           </a>
           <a
@@ -433,7 +758,7 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <span>Rede profissional</span>
+            <span>{currentContent.contact.professional}</span>
             LinkedIn
           </a>
         </div>
