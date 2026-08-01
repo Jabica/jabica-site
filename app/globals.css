@@ -336,6 +336,11 @@ main::before {
   padding: 88px clamp(22px, 6vw, 92px) 70px;
 }
 
+.hero-copy,
+.hero-panel {
+  min-width: 0;
+}
+
 .section-kicker {
   color: var(--ink-muted);
   display: inline-flex;
@@ -366,6 +371,7 @@ main::before {
   font-family: var(--font-mono), monospace;
   font-size: clamp(2.8rem, 7.4vw, 7.7rem);
   letter-spacing: -0.04em;
+  max-width: 100%;
   min-height: 1.12em;
   overflow-wrap: normal;
   word-break: normal;
@@ -470,6 +476,11 @@ main::before {
   overflow: hidden;
   padding: 22px;
   position: relative;
+}
+
+[data-theme="light"] .hero-panel {
+  animation: none;
+  box-shadow: none;
 }
 
 .hero-panel::before {
@@ -1189,6 +1200,13 @@ main::before {
 
   .work-card > p {
     grid-column: 2;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 981px) {
+  .terminal-title {
+    font-size: clamp(2.6rem, 5.4vw, 5.8rem);
+    letter-spacing: -0.03em;
   }
 }
 
