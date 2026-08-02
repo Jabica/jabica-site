@@ -370,10 +370,10 @@ main::before {
   display: block !important;
   font-family: var(--font-mono), monospace;
   font-size: clamp(2rem, 4.8vw, 4.8rem);
+  height: 3.22em;
   letter-spacing: -0.02em;
   line-height: 1.02;
   max-width: 100%;
-  min-height: 2.1em;
   overflow: visible;
   overflow-wrap: break-word;
   white-space: normal;
@@ -420,7 +420,7 @@ main::before {
   font-size: clamp(1.05rem, 1.6vw, 1.35rem);
   font-weight: 400;
   line-height: 1.7;
-  margin: 28px 0 0;
+  margin: clamp(12px, 1.2vw, 20px) 0 0;
   max-width: 690px;
 }
 
@@ -428,7 +428,7 @@ main::before {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 40px;
+  margin-top: clamp(24px, 2vw, 32px);
 }
 
 .primary-action,
@@ -1222,9 +1222,9 @@ main::before {
 
   .terminal-title {
     font-size: clamp(1.8rem, 4.2vw, 4rem);
+    height: 3.24em;
     letter-spacing: -0.02em;
     line-height: 1.02;
-    min-height: 2.1em;
   }
 
   .hero-panel {
@@ -1346,8 +1346,8 @@ main::before {
 
   .terminal-title {
     font-size: clamp(2.4rem, 12vw, 4.3rem);
+    height: 4.28em;
     letter-spacing: -0.03em;
-    min-height: 2.2em;
   }
 
   .hero-text {
