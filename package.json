@@ -38,5 +38,11 @@
     "vite": "^8.2.0",
     "wrangler": "^4.118.0"
   },
+  "overrides": {
+    "brace-expansion": "1.1.17",
+    "esbuild": "0.28.1",
+    "postcss": "8.5.25",
+    "sharp": "0.35.2"
+  },
   "type": "module"
 }
