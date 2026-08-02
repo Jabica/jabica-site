@@ -561,7 +561,7 @@ export default function Home() {
             Gabriel Jabour
             <span className="terminal-title" aria-live="polite">
               <span className="terminal-prompt">&gt;</span>
-              {typedText}
+              <span className="terminal-text">{typedText}</span>
               <span className="terminal-cursor" aria-hidden="true" />
             </span>
           </h1>
