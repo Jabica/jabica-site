@@ -1,9 +1,62 @@
 "use client";
 
+import {
+  siApple,
+  siClaude,
+  siClaudecode,
+  siCloudflare,
+  siDebian,
+  siDocker,
+  siFortinet,
+  siGit,
+  siGithub,
+  siGithubcopilot,
+  siGitforwindows,
+  siGooglegemini,
+  siIcloud,
+  siJavascript,
+  siMacos,
+  siNextdotjs,
+  siNodedotjs,
+  siNpm,
+  siReact,
+  siTypescript,
+  siUbuntu,
+  siVercel,
+  siVmware,
+} from "simple-icons";
+import type { SimpleIcon } from "simple-icons";
 import { useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 type Language = "pt" | "en";
+
+const signalIcons: Array<{ icon?: SimpleIcon; label: string; text?: string }> = [
+  { icon: siGooglegemini, label: "Google Gemini" },
+  { icon: siUbuntu, label: "Ubuntu" },
+  { icon: siDebian, label: "Debian" },
+  { icon: siVmware, label: "VMware" },
+  { icon: siIcloud, label: "iCloud" },
+  { icon: siDocker, label: "Docker" },
+  { icon: siVercel, label: "Vercel" },
+  { icon: siJavascript, label: "JavaScript" },
+  { icon: siTypescript, label: "TypeScript" },
+  { text: "GPT", label: "GPT" },
+  { icon: siCloudflare, label: "Cloudflare" },
+  { icon: siClaudecode, label: "Claude Code" },
+  { icon: siGithub, label: "GitHub" },
+  { icon: siGithubcopilot, label: "GitHub Copilot" },
+  { icon: siClaude, label: "Claude" },
+  { icon: siNextdotjs, label: "Next.js" },
+  { icon: siReact, label: "React" },
+  { icon: siNodedotjs, label: "Node.js" },
+  { icon: siNpm, label: "npm" },
+  { icon: siApple, label: "Apple" },
+  { icon: siMacos, label: "macOS" },
+  { icon: siGit, label: "Git" },
+  { icon: siGitforwindows, label: "Git for Windows" },
+  { icon: siFortinet, label: "Fortinet" },
+];
 
 const content = {
   pt: {
@@ -620,9 +673,20 @@ export default function Home() {
             </span>
           </div>
           <div className="signal-grid" aria-hidden="true">
-            {Array.from({ length: 24 }).map((_, index) => (
-              <span key={index} />
-            ))}
+            {Array.from({ length: 24 }).map((_, index) => {
+              const signalIcon = signalIcons[index];
+
+              return (
+                <span className={signalIcon ? "signal-icon-cell" : undefined} key={index}>
+                  {signalIcon?.icon ? (
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d={signalIcon.icon.path} />
+                    </svg>
+                  ) : null}
+                  {signalIcon?.text ? <strong>{signalIcon.text}</strong> : null}
+                </span>
+              );
+            })}
           </div>
         </div>
       </section>
