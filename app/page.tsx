@@ -421,7 +421,7 @@ export default function Home() {
         const rect = item.getBoundingClientRect();
         const isHeroItem = Boolean(item.closest("#top"));
         const resetOffsetAbove = Math.min(rect.height * 2.2, window.innerHeight * 1.6);
-        const resetOffsetBelow = Math.min(rect.height * 2, window.innerHeight * 1.45);
+        const resetOffsetBelow = Math.min(rect.height * 2.2, window.innerHeight * 1.6);
         const isFarAbove = rect.bottom < -resetOffsetAbove;
         const isFarBelow = rect.top > window.innerHeight + resetOffsetBelow;
 
@@ -611,11 +611,11 @@ export default function Home() {
               {currentContent.panel.metrics[0]}
             </span>
             <span>
-              <strong>9a</strong>
+              <strong>{language === "en" ? "9Y" : "9a"}</strong>
               {currentContent.panel.metrics[1]}
             </span>
             <span>
-              <strong>6a</strong>
+              <strong>{language === "en" ? "6Y" : "6a"}</strong>
               {currentContent.panel.metrics[2]}
             </span>
           </div>
@@ -705,15 +705,15 @@ export default function Home() {
           <span>{currentContent.numbers[0]}</span>
         </div>
         <div className="number-card reveal reveal-up">
-          <strong>9a</strong>
+          <strong>{language === "en" ? "9Y" : "9a"}</strong>
           <span>{currentContent.numbers[1]}</span>
         </div>
         <div className="number-card reveal reveal-up">
-          <strong>6a</strong>
+          <strong>{language === "en" ? "6Y" : "6a"}</strong>
           <span>{currentContent.numbers[2]}</span>
         </div>
         <div className="number-card reveal reveal-up">
-          <strong>3a</strong>
+          <strong>{language === "en" ? "3Y" : "3a"}</strong>
           <span>{currentContent.numbers[3]}</span>
         </div>
       </section>
