@@ -60,14 +60,14 @@ const signalIcons: Array<{ icon?: SimpleIcon; label: string; text?: string }> = 
 
 const content = {
   pt: {
-    nav: ["Sobre", "Especialidades", "Entregas", "Contato"],
+    nav: ["Sobre", "Especialidades", "Entregas", "Projetos", "Contato"],
     heroPhrases: [
-      "Service Desk em operacao real.",
-      "Automacoes para reduzir retrabalho.",
+      "Service Desk em operação real.",
+      "Automações para reduzir retrabalho.",
       "Projetos de TI com impacto.",
-      "DLP sem impactar usuario final.",
+      "DLP sem impactar o usuário final.",
       "IA aplicada ao dia a dia.",
-      "Documentacao que vira acao.",
+      "Documentação que vira ação.",
     ],
     hero: {
       kicker: "00 / Perfil profissional",
@@ -187,8 +187,23 @@ const content = {
       "experiencia em macOS",
       "DLP e projetos de TI",
     ],
+    portfolioTitle: {
+      kicker: "05 / Projetos",
+      title: "Sites publicados e projetos web.",
+    },
+    portfolio: [
+      {
+        status: "online",
+        name: "Dra. Jamilly El Gebai",
+        type: "site profissional",
+        text: "Site institucional para presença profissional, com foco em apresentação clara, navegação simples e publicação pública do projeto.",
+        stack: ["Next.js", "React", "TypeScript", "CSS", "DNS"],
+        href: "https://drajamillyelgebai.com.br/",
+        preview: "/projects/dra-jamilly-preview.webp",
+      },
+    ],
     credentialsTitle: {
-      kicker: "05 / Formacao",
+      kicker: "06 / Formacao",
       title: "Formacao academica e certificacoes.",
     },
     credentials: [
@@ -198,7 +213,7 @@ const content = {
       "Ingles avancado em escrita e intermediario em comunicacao verbal",
     ],
     contact: {
-      kicker: "06 / Contato",
+      kicker: "07 / Contato",
       title: "Escolha o melhor canal para falar comigo.",
       text: "Para contato profissional, use e-mail ou WhatsApp. O LinkedIn fica como apoio para ver historico e conexoes.",
       whatsapp: "Clique aqui para conversar pelo WhatsApp",
@@ -206,7 +221,7 @@ const content = {
     },
   },
   en: {
-    nav: ["About", "Specialties", "Work", "Contact"],
+    nav: ["About", "Specialties", "Work", "Projects", "Contact"],
     heroPhrases: [
       "Service Desk in real operations.",
       "Automation that reduces rework.",
@@ -333,8 +348,23 @@ const content = {
       "experience with macOS",
       "DLP and IT projects",
     ],
+    portfolioTitle: {
+      kicker: "05 / Projects",
+      title: "Published websites and web projects.",
+    },
+    portfolio: [
+      {
+        status: "online",
+        name: "Dra. Jamilly El Gebai",
+        type: "professional site",
+        text: "Institutional website for professional presence, focused on clear presentation, simple navigation and public project delivery.",
+        stack: ["Next.js", "React", "TypeScript", "CSS", "DNS"],
+        href: "https://drajamillyelgebai.com.br/",
+        preview: "/projects/dra-jamilly-preview.webp",
+      },
+    ],
     credentialsTitle: {
-      kicker: "05 / Education",
+      kicker: "06 / Education",
       title: "Academic background and certifications.",
     },
     credentials: [
@@ -344,7 +374,7 @@ const content = {
       "Advanced written English and intermediate verbal communication",
     ],
     contact: {
-      kicker: "06 / Contact",
+      kicker: "07 / Contact",
       title: "Choose the best channel to reach me.",
       text: "For professional contact, use email or WhatsApp. LinkedIn is available as support for history and connections.",
       whatsapp: "Click here to talk on WhatsApp",
@@ -435,6 +465,7 @@ export default function Home() {
       ".timeline",
       ".pillar-grid",
       ".work-list",
+      ".portfolio-grid",
       ".numbers",
       ".tag-cloud",
       ".contact-actions",
@@ -600,8 +631,11 @@ export default function Home() {
             <a href="#entregas" onClick={() => setIsMenuOpen(false)}>
               {currentContent.nav[2]}
             </a>
-            <a href="#contato" onClick={() => setIsMenuOpen(false)}>
+            <a href="#projetos" onClick={() => setIsMenuOpen(false)}>
               {currentContent.nav[3]}
+            </a>
+            <a href="#contato" onClick={() => setIsMenuOpen(false)}>
+              {currentContent.nav[4]}
             </a>
           </nav>
         </div>
@@ -779,6 +813,60 @@ export default function Home() {
         <div className="number-card reveal reveal-up">
           <strong>{language === "en" ? "3Y" : "3a"}</strong>
           <span>{currentContent.numbers[3]}</span>
+        </div>
+      </section>
+
+      <section className="portfolio" id="projetos">
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.portfolioTitle.kicker}</span>
+          <h2>{currentContent.portfolioTitle.title}</h2>
+        </div>
+        <div className="portfolio-grid">
+          {currentContent.portfolio.map((project) => {
+            const content = (
+              <>
+                <div className="portfolio-topline">
+                  <span>{project.status}</span>
+                  <span>{project.type}</span>
+                </div>
+                {"preview" in project ? (
+                  <div className="portfolio-preview">
+                    <div
+                      aria-hidden="true"
+                      className="portfolio-preview-image"
+                      style={{ backgroundImage: `url(${project.preview})` }}
+                    />
+                  </div>
+                ) : null}
+                <h3>{project.name}</h3>
+                <p>{project.text}</p>
+                <div className="portfolio-stack" aria-label="Tecnologias e contexto">
+                  {project.stack.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </>
+            );
+
+            return project.href ? (
+              <a
+                className="portfolio-card reveal reveal-up magnetic-card"
+                href={project.href}
+                key={project.name}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {content}
+              </a>
+            ) : (
+              <article
+                className="portfolio-card reveal reveal-up magnetic-card"
+                key={project.name}
+              >
+                {content}
+              </article>
+            );
+          })}
         </div>
       </section>
 
