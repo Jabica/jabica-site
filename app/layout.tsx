@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description:
     "Site biografico de Gabriel Jabour: Analista de Service Desk com experiencia em suporte, Windows, macOS, DLP, projetos de TI e automacoes operacionais.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "./favicon.svg",
+    shortcut: "./favicon.svg",
   },
 };
 
