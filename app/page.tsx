@@ -200,6 +200,17 @@ const content = {
         stack: ["Next.js", "React", "TypeScript", "CSS", "DNS"],
         href: "https://drajamillyelgebai.com.br/",
         preview: "/projects/dra-jamilly-preview.webp",
+        accentTheme: "default",
+      },
+      {
+        status: "online",
+        name: "Jabica Store",
+        type: "loja digital",
+        text: "E-commerce de chaves para softwares externos, com catálogo, checkout, área do cliente e painel administrativo com identidade visual própria.",
+        stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Prisma"],
+        href: "https://jabicastore.com",
+        preview: "/projects/jabica-store-preview.png",
+        accentTheme: "store",
       },
     ],
     credentialsTitle: {
@@ -361,6 +372,17 @@ const content = {
         stack: ["Next.js", "React", "TypeScript", "CSS", "DNS"],
         href: "https://drajamillyelgebai.com.br/",
         preview: "/projects/dra-jamilly-preview.webp",
+        accentTheme: "default",
+      },
+      {
+        status: "online",
+        name: "Jabica Store",
+        type: "digital store",
+        text: "E-commerce for External softwares Keys with catalog, checkout, customer area and an admin panel built around its own visual identity.",
+        stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Prisma"],
+        href: "https://jabicastore.com",
+        preview: "/projects/jabica-store-preview.png",
+        accentTheme: "store",
       },
     ],
     credentialsTitle: {
@@ -486,11 +508,35 @@ export default function Home() {
     });
 
     const cards = document.querySelectorAll<HTMLElement>(".magnetic-card");
+    const accentCards = document.querySelectorAll<HTMLElement>("[data-accent-theme]");
     const moveLight = (event: MouseEvent) => {
       const target = event.currentTarget as HTMLElement;
       const rect = target.getBoundingClientRect();
       target.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
       target.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+    };
+    const applyAccentTheme = (event: Event) => {
+      const target = event.currentTarget as HTMLElement;
+      const accentTheme = target.dataset.accentTheme;
+
+      if (accentTheme === "default") {
+        delete document.documentElement.dataset.accentTheme;
+        return;
+      }
+
+      if (accentTheme) {
+        document.documentElement.dataset.accentTheme = accentTheme;
+      }
+    };
+    const clearAccentTheme = (event: Event) => {
+      const target = event.currentTarget as HTMLElement;
+
+      if (
+        target.dataset.accentTheme === "default" &&
+        document.documentElement.dataset.accentTheme === target.dataset.accentTheme
+      ) {
+        delete document.documentElement.dataset.accentTheme;
+      }
     };
     const movePageLight = (event: MouseEvent) => {
       document.documentElement.style.setProperty("--page-mouse-x", `${event.clientX}px`);
@@ -498,6 +544,12 @@ export default function Home() {
     };
 
     cards.forEach((card) => card.addEventListener("mousemove", moveLight));
+    accentCards.forEach((card) => {
+      card.addEventListener("mouseenter", applyAccentTheme);
+      card.addEventListener("mouseleave", clearAccentTheme);
+      card.addEventListener("focus", applyAccentTheme);
+      card.addEventListener("blur", clearAccentTheme);
+    });
     window.addEventListener("mousemove", movePageLight, { passive: true });
 
     const syncRevealState = () => {
@@ -532,6 +584,13 @@ export default function Home() {
     return () => {
       observer.disconnect();
       cards.forEach((card) => card.removeEventListener("mousemove", moveLight));
+      accentCards.forEach((card) => {
+        card.removeEventListener("mouseenter", applyAccentTheme);
+        card.removeEventListener("mouseleave", clearAccentTheme);
+        card.removeEventListener("focus", applyAccentTheme);
+        card.removeEventListener("blur", clearAccentTheme);
+      });
+      delete document.documentElement.dataset.accentTheme;
       window.removeEventListener("mousemove", movePageLight);
       window.removeEventListener("scroll", setProgress);
     };
@@ -851,6 +910,7 @@ export default function Home() {
             return project.href ? (
               <a
                 className="portfolio-card reveal reveal-up magnetic-card"
+                data-accent-theme={"accentTheme" in project ? project.accentTheme : undefined}
                 href={project.href}
                 key={project.name}
                 rel="noreferrer"
@@ -861,6 +921,7 @@ export default function Home() {
             ) : (
               <article
                 className="portfolio-card reveal reveal-up magnetic-card"
+                data-accent-theme={"accentTheme" in project ? project.accentTheme : undefined}
                 key={project.name}
               >
                 {content}
@@ -915,6 +976,18 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <p>
+          &copy; 2026 Jabica. Todos os direitos reservados.
+          <span aria-hidden="true"> • </span>
+          Desenvolvido por
+          <span className="footer-badge" aria-hidden="true">J</span>
+          <a href="https://jabica.com.br" target="_blank" rel="noreferrer">
+            jabica.com.br
+          </a>
+        </p>
+      </footer>
     </main>
   );
 }
