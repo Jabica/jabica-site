@@ -79,7 +79,7 @@ const content = {
       status: "Operacao, projetos e automacao em evolucao.",
       role: "Analista de Service Desk",
       company: "Henry Schein Brazil / Dental Speed Graph",
-      projects: "Avatar, DLP, softwares e telefonia corporativa",
+      projects: "ColPal, Avatar, DLP e telefonia corporativa",
       security: "protecao da empresa sem travar o usuario final",
       automation: "IA, APIs, scripts, MCPs e documentacao viva",
       education: "Ciencia da Computacao - UNISUL / 2026",
@@ -111,7 +111,7 @@ const content = {
       {
         year: "03",
         title: "Projetos corporativos",
-        text: "Apoio ao Projeto Avatar com Senior Sistemas, operacao de DLP, servidores de impressao e novos projetos de TI.",
+        text: "Apoio ao Projeto Avatar com Senior Sistemas, operacao de DLP, servidores de impressao e integracao do ambiente ColPal com Okta Workflows.",
       },
       {
         year: "04",
@@ -137,7 +137,7 @@ const content = {
       {
         label: "Projetos",
         title: "Execucao com resultado",
-        text: "Implantacoes, integracoes, telefonia corporativa e automacoes que conectam rotina tecnica a impacto real.",
+        text: "Implantacoes, integracoes de identidade, telefonia corporativa e automacoes que conectam rotina tecnica a impacto real.",
       },
     ],
     specialties: [
@@ -152,6 +152,8 @@ const content = {
       "Data centers",
       "Movidesk API",
       "FortiClient EMS",
+      "Okta",
+      "Okta Workflows",
       "Pentest em formacao",
       "PowerShell",
     ],
@@ -160,6 +162,11 @@ const content = {
       title: "Projetos que mostram impacto alem do chamado.",
     },
     works: [
+      {
+        name: "Integração ColPal / Okta Workflows",
+        type: "Identidade",
+        text: "Integração do ambiente Colgate-Palmolive (ColPal), com Okta Workflows e fluxos de identidade para conectar a operação local ao ambiente do parceiro sem quebrar o dia a dia do usuário.",
+      },
       {
         name: "Migracao de 400 linhas corporativas",
         type: "Telefonia",
@@ -277,7 +284,7 @@ const content = {
       status: "Operations, projects and automation in progress.",
       role: "Service Desk Analyst",
       company: "Henry Schein Brazil / Dental Speed Graph",
-      projects: "Avatar, DLP, software and corporate telephony",
+      projects: "ColPal, Avatar, DLP and corporate telephony",
       security: "company protection without slowing down end users",
       automation: "AI, APIs, scripts, MCPs and living documentation",
       education: "Computer Science - UNISUL / 2026",
@@ -309,7 +316,7 @@ const content = {
       {
         year: "03",
         title: "Corporate projects",
-        text: "Support for the Avatar project with Senior Sistemas, DLP operations, print servers and new IT projects.",
+        text: "Support for the Avatar project with Senior Sistemas, DLP operations, print servers and ColPal environment integration with Okta Workflows.",
       },
       {
         year: "04",
@@ -335,7 +342,7 @@ const content = {
       {
         label: "Projects",
         title: "Execution with results",
-        text: "Deployments, integrations, corporate telephony and automations that connect technical routine to real impact.",
+        text: "Deployments, identity integrations, corporate telephony and automations that connect technical routine to real impact.",
       },
     ],
     specialties: [
@@ -350,6 +357,8 @@ const content = {
       "Data centers",
       "Movidesk API",
       "FortiClient EMS",
+      "Okta",
+      "Okta Workflows",
       "Pentest training",
       "PowerShell",
     ],
@@ -358,6 +367,11 @@ const content = {
       title: "Projects that show impact beyond the ticket.",
     },
     works: [
+      {
+        name: "ColPal / Okta Workflows integration",
+        type: "Identity",
+        text: "Integration of the Colgate-Palmolive (ColPal) environment, using Okta Workflows and identity flows to connect local operations to the partner environment without breaking day-to-day work.",
+      },
       {
         name: "Migration of 400 corporate lines",
         type: "Telephony",
