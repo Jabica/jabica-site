@@ -13,9 +13,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Jabour | Tecnologia, automacao e operacao digital",
+  title: "Gabriel Jabour | Technology, automation and digital operations",
   description:
-    "Site biografico de Gabriel Jabour: Analista de Service Desk com experiencia em suporte, Windows, macOS, DLP, projetos de TI e automacoes operacionais.",
+    "Biographical site of Gabriel Jabour: Service Desk Analyst with experience in support, Windows, macOS, DLP, IT projects and operational automation.",
   icons: {
     icon: "./favicon.svg",
     shortcut: "./favicon.svg",
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="en">
       <body className={`${display.variable} ${mono.variable}`}>{children}</body>
     </html>
   );

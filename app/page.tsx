@@ -212,6 +212,16 @@ const content = {
         preview: "/projects/jabica-store-preview.png",
         accentTheme: "store",
       },
+      {
+        status: "online",
+        name: "Aurum Investor",
+        type: "plataforma financeira",
+        text: "Plataforma de organização financeira e investimentos: o Basic cuida de gastos, cartões e metas; o Premium consolida a carteira, análise mensal com IA e backtest versus CDI.",
+        stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
+        href: "https://auruminvestor.com",
+        preview: "/projects/aurum-investor-preview.webp",
+        accentTheme: "aurum",
+      },
     ],
     credentialsTitle: {
       kicker: "06 / Formacao",
@@ -229,6 +239,22 @@ const content = {
       text: "Para contato profissional, use e-mail ou WhatsApp. O LinkedIn fica como apoio para ver historico e conexoes.",
       whatsapp: "Clique aqui para conversar pelo WhatsApp",
       professional: "Rede profissional",
+    },
+    aria: {
+      brandOpen: "Voltar ao topo ou abrir menu",
+      brandClose: "Fechar menu",
+      themeToLight: "Ativar light mode",
+      themeToDark: "Ativar dark mode",
+      nav: "Navegacao principal",
+      panel: "Resumo profissional",
+      metrics: "Indicadores profissionais",
+      specialties: "Competencias",
+      stack: "Tecnologias e contexto",
+      credentials: "Formacao e certificacoes",
+    },
+    footer: {
+      rights: "Todos os direitos reservados.",
+      developed: "Desenvolvido por",
     },
   },
   en: {
@@ -384,6 +410,16 @@ const content = {
         preview: "/projects/jabica-store-preview.png",
         accentTheme: "store",
       },
+      {
+        status: "online",
+        name: "Aurum Investor",
+        type: "financial platform",
+        text: "Personal finance and investing platform: Basic organizes expenses, cards and goals; Premium unlocks a consolidated portfolio, monthly AI analysis and backtesting versus CDI.",
+        stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
+        href: "https://auruminvestor.com",
+        preview: "/projects/aurum-investor-preview.webp",
+        accentTheme: "aurum",
+      },
     ],
     credentialsTitle: {
       kicker: "06 / Education",
@@ -402,6 +438,22 @@ const content = {
       whatsapp: "Click here to talk on WhatsApp",
       professional: "Professional network",
     },
+    aria: {
+      brandOpen: "Back to top or open menu",
+      brandClose: "Close menu",
+      themeToLight: "Switch to light mode",
+      themeToDark: "Switch to dark mode",
+      nav: "Main navigation",
+      panel: "Professional summary",
+      metrics: "Professional indicators",
+      specialties: "Skills",
+      stack: "Technologies and context",
+      credentials: "Education and certifications",
+    },
+    footer: {
+      rights: "All rights reserved.",
+      developed: "Developed by",
+    },
   },
 } satisfies Record<Language, Record<string, unknown>>;
 
@@ -410,7 +462,7 @@ export default function Home() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [theme, setTheme] = useState<Theme>("dark");
-  const [language, setLanguage] = useState<Language>("pt");
+  const [language, setLanguage] = useState<Language>("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentContent = content[language];
 
@@ -418,7 +470,7 @@ export default function Home() {
     const savedTheme = window.localStorage.getItem("jabica-theme");
     const savedLanguage = window.localStorage.getItem("jabica-language");
     const initialTheme = savedTheme === "light" ? "light" : "dark";
-    const initialLanguage = savedLanguage === "en" ? "en" : "pt";
+    const initialLanguage = savedLanguage === "pt" ? "pt" : "en";
 
     document.documentElement.dataset.theme = initialTheme;
     document.documentElement.lang = initialLanguage === "pt" ? "pt-BR" : "en";
@@ -653,7 +705,7 @@ export default function Home() {
           onClick={handleBrandClick}
           aria-expanded={isMenuOpen}
           aria-controls="header-menu"
-          aria-label={isMenuOpen ? "Fechar menu" : "Voltar ao topo ou abrir menu"}
+          aria-label={isMenuOpen ? currentContent.aria.brandClose : currentContent.aria.brandOpen}
         >
           <span className="brand-mark">J</span>
           <span>Gabriel Jabour</span>
@@ -671,7 +723,7 @@ export default function Home() {
             className="theme-toggle"
             type="button"
             onClick={toggleTheme}
-            aria-label={`Ativar ${theme === "dark" ? "light mode" : "dark mode"}`}
+            aria-label={theme === "dark" ? currentContent.aria.themeToLight : currentContent.aria.themeToDark}
           >
             <span>{theme === "dark" ? "Light" : "Dark"}</span>
           </button>
@@ -680,7 +732,7 @@ export default function Home() {
           className={`header-actions ${isMenuOpen ? "is-open" : ""}`}
           id="header-menu"
         >
-          <nav aria-label="Navegacao principal">
+          <nav aria-label={currentContent.aria.nav}>
             <a href="#sobre" onClick={() => setIsMenuOpen(false)}>
               {currentContent.nav[0]}
             </a>
@@ -731,7 +783,7 @@ export default function Home() {
             <span>status</span>
             <strong>{currentContent.panel.status}</strong>
           </div>
-          <div className="terminal-lines" aria-label="Resumo profissional">
+          <div className="terminal-lines" aria-label={currentContent.aria.panel}>
             <p>
               <span>role</span> {currentContent.panel.role}
             </p>
@@ -751,7 +803,7 @@ export default function Home() {
               <span>education</span> {currentContent.panel.education}
             </p>
           </div>
-          <div className="panel-metrics" aria-label="Indicadores profissionais">
+          <div className="panel-metrics" aria-label={currentContent.aria.metrics}>
             <span>
               <strong>400+</strong>
               {currentContent.panel.metrics[0]}
@@ -827,7 +879,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="tag-cloud reveal reveal-up" aria-label="Competencias">
+        <div className="tag-cloud reveal reveal-up" aria-label={currentContent.aria.specialties}>
           {currentContent.specialties.map((item, index) => (
             <span key={index}>{item}</span>
           ))}
@@ -899,7 +951,7 @@ export default function Home() {
                 ) : null}
                 <h3>{project.name}</h3>
                 <p>{project.text}</p>
-                <div className="portfolio-stack" aria-label="Tecnologias e contexto">
+                <div className="portfolio-stack" aria-label={currentContent.aria.stack}>
                   {project.stack.map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -936,7 +988,7 @@ export default function Home() {
           <span className="section-kicker">{currentContent.credentialsTitle.kicker}</span>
           <h2>{currentContent.credentialsTitle.title}</h2>
         </div>
-        <div className="tag-cloud reveal reveal-up" aria-label="Formacao e certificacoes">
+        <div className="tag-cloud reveal reveal-up" aria-label={currentContent.aria.credentials}>
           {currentContent.credentials.map((item, index) => (
             <span key={index}>{item}</span>
           ))}
@@ -979,9 +1031,9 @@ export default function Home() {
 
       <footer className="site-footer">
         <p>
-          &copy; 2026 Jabica. Todos os direitos reservados.
+          &copy; 2026 Jabica. {currentContent.footer.rights}
           <span aria-hidden="true"> • </span>
-          Desenvolvido por
+          {currentContent.footer.developed}
           <span className="footer-badge" aria-hidden="true">J</span>
           <a href="https://jabica.com.br" target="_blank" rel="noreferrer">
             jabica.com.br
