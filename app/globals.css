@@ -120,6 +120,45 @@ html[data-accent-theme="store"] {
   --shadow-strong: rgba(2, 0, 8, 0.45);
 }
 
+html[data-accent-theme="aurum"] {
+  --paper: #0a0a08;
+  --paper-raised: #14120c;
+  --ink: #f7f3e4;
+  --ink-soft: #d4c89a;
+  --ink-muted: #8a825c;
+  --line: rgba(245, 197, 24, 0.16);
+  --line-strong: rgba(245, 197, 24, 0.42);
+  --signal: #f5c518;
+  --signal-soft: rgba(245, 197, 24, 0.16);
+  --amber: #f5c518;
+  --header-bg: rgba(10, 10, 8, 0.82);
+  --grid-line: rgba(245, 197, 24, 0.08);
+  --grid-line-soft: rgba(245, 197, 24, 0.05);
+  --panel-glow: rgba(245, 197, 24, 0.24);
+  --panel-bg: linear-gradient(145deg, rgba(24, 20, 10, 0.97), rgba(10, 10, 8, 0.82));
+  --card-bg: rgba(22, 18, 8, 0.8);
+  --card-bg-soft: rgba(20, 16, 8, 0.6);
+  --chip-bg: rgba(26, 22, 10, 0.8);
+  --secondary-bg: rgba(26, 22, 10, 0.84);
+  --secondary-ink: #f7f3e4;
+  --metric-bg: rgba(10, 10, 8, 0.5);
+  --metric-accent: rgba(245, 197, 24, 0.76);
+  --metric-accent-strong: #f5c518;
+  --action-ink: #0a0a08;
+  --title-stroke: rgba(247, 243, 228, 0.76);
+  --title-stroke-active: rgba(245, 197, 24, 0.8);
+  --body-glow-a: rgba(245, 197, 24, 0.12);
+  --body-glow-b: rgba(245, 197, 24, 0.08);
+  --cursor-glow-a: rgba(245, 197, 24, 0.08);
+  --cursor-glow-b: rgba(245, 197, 24, 0.03);
+  --motion-line: rgba(245, 197, 24, 0.38);
+  --icon-cell-bg: rgba(245, 197, 24, 0.12);
+  --icon-cell-alt-bg: rgba(245, 197, 24, 0.2);
+  --number-line: rgba(245, 197, 24, 0.3);
+  --number-text: rgba(247, 243, 228, 0.74);
+  --shadow-strong: rgba(0, 0, 0, 0.5);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -992,7 +1031,7 @@ main::before {
 .portfolio-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: none;
 }
 
@@ -1534,9 +1573,12 @@ main::before {
 
   .timeline,
   .pillar-grid,
-  .portfolio-grid,
   .numbers {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
   }
 
   .work-card {
