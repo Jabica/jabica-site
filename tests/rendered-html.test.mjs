@@ -44,6 +44,8 @@ test("server-renders the portfolio shell", async () => {
   assert.match(html, /Choose the best channel to reach me/);
   assert.match(html, /Aurum Investor/);
   assert.match(html, /https:\/\/auruminvestor\.com/);
+  assert.match(html, /ColPal \/ Okta Workflows integration/);
+  assert.match(html, /Colgate-Palmolive \(ColPal\)/);
   assert.match(html, /contato@jabica\.com\.br/);
   assert.match(html, /http:\/\/wa\.me\/5548996437375/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/i);
@@ -64,6 +66,8 @@ test("keeps the starter preview removed from the app", async () => {
   assert.match(page, /href="http:\/\/wa\.me\/5548996437375"/);
   assert.match(page, /accentTheme: "aurum"/);
   assert.match(page, /https:\/\/auruminvestor\.com/);
+  assert.match(page, /Okta Workflows/);
+  assert.match(page, /Colgate-Palmolive \(ColPal\)/);
   assert.match(
     layout,
     /title:\s*"Gabriel Jabour \| Technology, automation and digital operations"/,
