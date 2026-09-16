@@ -22,7 +22,7 @@
     "simple-icons": "^16.30.0"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.54.8",
+    "@cloudflare/vite-plugin": "^1.54.10",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.5.1",
     "@types/react": "19.3.0",
@@ -37,7 +37,7 @@
     "typescript": "^6.0.3",
     "vinext": "0.2.1",
     "vite": "^8.3.0",
-    "wrangler": "^4.118.0"
+    "wrangler": "^4.132.0"
   },
   "overrides": {
     "brace-expansion": "1.1.17",
