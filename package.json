@@ -45,7 +45,7 @@
     },
     "esbuild": "0.28.1",
     "postcss": "8.5.25",
-    "sharp": "0.35.2"
+    "sharp": "0.35.5"
   },
   "type": "module"
 }
