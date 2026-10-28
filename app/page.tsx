@@ -91,6 +91,7 @@ const content = {
       paragraphs: [
         "Iniciei minha carreira em TI como jovem aprendiz na empresa onde atuo ate hoje. Foi minha primeira experiencia profissional em um ambiente corporativo, onde encontrei afinidade com atendimento, situacoes emergenciais e resolucao de problemas.",
         "Com o tempo, cresci para atuar em suporte tecnico, implantacao de softwares, projetos de TI, DLP, redes e automacoes. Minha forma de trabalhar combina execucao pratica, comunicacao clara e validacao do resultado.",
+        "Nos projetos proprios, uso um fluxo de pull requests assistido por IA, com registro de atividades de cada etapa para manter rastreabilidade.",
       ],
     },
     timelineTitle: {
@@ -156,6 +157,16 @@ const content = {
       "Okta Workflows",
       "Pentest em formacao",
       "PowerShell",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Python (Streamlit, FastAPI)",
+      "Docker",
+      "GitHub Actions",
+      "SQLite",
+      "OCR (Tesseract)",
+      "Documentacao tecnica e bases de conhecimento",
     ],
     worksTitle: {
       kicker: "04 / Entregas",
@@ -193,6 +204,7 @@ const content = {
       "experiencia em Windows",
       "experiencia em macOS",
       "DLP e projetos de TI",
+      "PRs mergeados e revisados, semanas 42-43 de 2026 (10 + 14)",
     ],
     portfolioTitle: {
       kicker: "05 / Projetos",
@@ -223,11 +235,27 @@ const content = {
         status: "online",
         name: "Aurum Investor",
         type: "plataforma financeira",
-        text: "Plataforma de organização financeira e investimentos: o Basic cuida de gastos, cartões e metas; o Premium consolida a carteira, análise mensal com IA e backtest versus CDI.",
+        text: "Plataforma de organização financeira e investimentos: o Basic cuida de gastos, cartões e metas; o Premium consolida a carteira, análise mensal com IA e backtest versus CDI; inclui ritmo das metas frente ao prazo, calendário mensal de caixa, retratos mensais do patrimônio, acompanhamento de dividendos previstos e recebidos e comparação de investimentos considerando impostos.",
         stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
+      },
+      {
+        status: "demo",
+        name: "FarmaLente",
+        type: "demo de leitura de receitas",
+        text: "Demonstração de leitura de receitas com OCR local apenas em receitas sintéticas, leitor LLM opcional e limites na prévia pública.",
+        stack: ["OCR local", "Tesseract", "Leitor LLM opcional", "Receitas sintéticas"],
+        accentTheme: "default",
+      },
+      {
+        status: "projeto",
+        name: "english-coach",
+        type: "app de prática de inglês",
+        text: "Prática de inglês com explicações em pt-BR, cenários de roleplay, flashcards com repetição espaçada, página de progresso e modo demo offline, coberta por 28 testes.",
+        stack: ["Explicações em pt-BR", "Roleplay", "Flashcards", "Modo demo offline", "28 testes"],
+        accentTheme: "default",
       },
     ],
     credentialsTitle: {
@@ -296,6 +324,7 @@ const content = {
       paragraphs: [
         "I started my IT career as a young apprentice at the company where I still work today. It was my first professional experience in a corporate environment, where I connected with support, urgent situations and problem solving.",
         "Over time, I grew into technical support, software deployment, IT projects, DLP, networks and automation. My way of working combines practical execution, clear communication and result validation.",
+        "On my own projects I use an AI-assisted pull request workflow with an activity log of every step, keeping the work traceable.",
       ],
     },
     timelineTitle: {
@@ -361,6 +390,16 @@ const content = {
       "Okta Workflows",
       "Pentest training",
       "PowerShell",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Python (Streamlit, FastAPI)",
+      "Docker",
+      "GitHub Actions",
+      "SQLite",
+      "OCR (Tesseract)",
+      "Technical documentation and knowledge bases",
     ],
     worksTitle: {
       kicker: "04 / Work",
@@ -398,6 +437,7 @@ const content = {
       "experience with Windows",
       "experience with macOS",
       "DLP and IT projects",
+      "PRs merged and reviewed, weeks 42-43 of 2026 (10 + 14)",
     ],
     portfolioTitle: {
       kicker: "05 / Projects",
@@ -428,11 +468,27 @@ const content = {
         status: "online",
         name: "Aurum Investor",
         type: "financial platform",
-        text: "Personal finance and investing platform: Basic organizes expenses, cards and goals; Premium unlocks a consolidated portfolio, monthly AI analysis and backtesting versus CDI.",
+        text: "Personal finance and investing platform: Basic organizes expenses, cards and goals; Premium unlocks a consolidated portfolio, monthly AI analysis and backtesting versus CDI; includes goal pace versus deadline, a monthly cash calendar, monthly net-worth snapshots, expected versus received dividend tracking and tax-aware investment comparison.",
         stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
+      },
+      {
+        status: "demo",
+        name: "FarmaLente",
+        type: "prescription-reading demo",
+        text: "Prescription reading demo with local OCR on synthetic slips only, an optional LLM reader and public-preview limits.",
+        stack: ["Local OCR", "Tesseract", "Optional LLM reader", "Synthetic slips only"],
+        accentTheme: "default",
+      },
+      {
+        status: "project",
+        name: "english-coach",
+        type: "English practice app",
+        text: "English practice with pt-BR explanations, roleplay scenarios, spaced-repetition flashcards, a progress page and an offline demo mode, covered by 28 tests.",
+        stack: ["pt-BR explanations", "Roleplay", "Spaced-repetition flashcards", "Offline demo mode", "28 tests"],
+        accentTheme: "default",
       },
     ],
     credentialsTitle: {
@@ -939,6 +995,10 @@ export default function Home() {
           <strong>{language === "en" ? "3Y" : "3a"}</strong>
           <span>{currentContent.numbers[3]}</span>
         </div>
+        <div className="number-card reveal reveal-up">
+          <strong>24</strong>
+          <span>{currentContent.numbers[4]}</span>
+        </div>
       </section>
 
       <section className="portfolio" id="projetos">
@@ -973,7 +1033,7 @@ export default function Home() {
               </>
             );
 
-            return project.href ? (
+            return "href" in project && project.href ? (
               <a
                 className="portfolio-card reveal reveal-up magnetic-card"
                 data-accent-theme={"accentTheme" in project ? project.accentTheme : undefined}
