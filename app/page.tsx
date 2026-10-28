@@ -204,7 +204,6 @@ const content = {
       "experiencia em Windows",
       "experiencia em macOS",
       "DLP e projetos de TI",
-      "PRs mergeados e revisados, semanas 42-43 de 2026 (10 + 14)",
     ],
     portfolioTitle: {
       kicker: "05 / Projetos",
@@ -240,22 +239,6 @@ const content = {
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
-      },
-      {
-        status: "demo",
-        name: "FarmaLente",
-        type: "demo de leitura de receitas",
-        text: "Demonstração de leitura de receitas com OCR local apenas em receitas sintéticas, leitor LLM opcional e limites na prévia pública.",
-        stack: ["OCR local", "Tesseract", "Leitor LLM opcional", "Receitas sintéticas"],
-        accentTheme: "default",
-      },
-      {
-        status: "projeto",
-        name: "english-coach",
-        type: "app de prática de inglês",
-        text: "Prática de inglês com explicações em pt-BR, cenários de roleplay, flashcards com repetição espaçada, página de progresso e modo demo offline, coberta por 28 testes.",
-        stack: ["Explicações em pt-BR", "Roleplay", "Flashcards", "Modo demo offline", "28 testes"],
-        accentTheme: "default",
       },
     ],
     credentialsTitle: {
@@ -437,7 +420,6 @@ const content = {
       "experience with Windows",
       "experience with macOS",
       "DLP and IT projects",
-      "PRs merged and reviewed, weeks 42-43 of 2026 (10 + 14)",
     ],
     portfolioTitle: {
       kicker: "05 / Projects",
@@ -473,22 +455,6 @@ const content = {
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
-      },
-      {
-        status: "demo",
-        name: "FarmaLente",
-        type: "prescription-reading demo",
-        text: "Prescription reading demo with local OCR on synthetic slips only, an optional LLM reader and public-preview limits.",
-        stack: ["Local OCR", "Tesseract", "Optional LLM reader", "Synthetic slips only"],
-        accentTheme: "default",
-      },
-      {
-        status: "project",
-        name: "english-coach",
-        type: "English practice app",
-        text: "English practice with pt-BR explanations, roleplay scenarios, spaced-repetition flashcards, a progress page and an offline demo mode, covered by 28 tests.",
-        stack: ["pt-BR explanations", "Roleplay", "Spaced-repetition flashcards", "Offline demo mode", "28 tests"],
-        accentTheme: "default",
       },
     ],
     credentialsTitle: {
@@ -994,10 +960,6 @@ export default function Home() {
         <div className="number-card reveal reveal-up">
           <strong>{language === "en" ? "3Y" : "3a"}</strong>
           <span>{currentContent.numbers[3]}</span>
-        </div>
-        <div className="number-card reveal reveal-up">
-          <strong>24</strong>
-          <span>{currentContent.numbers[4]}</span>
         </div>
       </section>
 
