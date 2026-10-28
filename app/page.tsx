@@ -58,6 +58,17 @@ const signalIcons: Array<{ icon?: SimpleIcon; label: string; text?: string }> = 
   { icon: siFortinet, label: "Fortinet" },
 ];
 
+type ProjectCard = {
+  status: string;
+  name: string;
+  type: string;
+  text: string;
+  stack: readonly string[];
+  accentTheme: string;
+  href?: string;
+  preview?: string;
+};
+
 const content = {
   pt: {
     nav: ["Sobre", "Especialidades", "Entregas", "Projetos", "Contato"],
@@ -91,6 +102,7 @@ const content = {
       paragraphs: [
         "Iniciei minha carreira em TI como jovem aprendiz na empresa onde atuo ate hoje. Foi minha primeira experiencia profissional em um ambiente corporativo, onde encontrei afinidade com atendimento, situacoes emergenciais e resolucao de problemas.",
         "Com o tempo, cresci para atuar em suporte tecnico, implantacao de softwares, projetos de TI, DLP, redes e automacoes. Minha forma de trabalhar combina execucao pratica, comunicacao clara e validacao do resultado.",
+        "Nos projetos proprios, uso um fluxo de pull requests assistido por IA, com registro de atividades de cada etapa para manter rastreabilidade.",
       ],
     },
     timelineTitle: {
@@ -156,6 +168,44 @@ const content = {
       "Okta Workflows",
       "Pentest em formacao",
       "PowerShell",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Python (Streamlit, FastAPI)",
+      "Docker",
+      "GitHub Actions",
+      "SQLite",
+      "OCR (Tesseract)",
+      "Documentacao tecnica e bases de conhecimento",
+      "Acesso ZTNA e VPN",
+      "Chaves temporárias de VPN",
+      "Grupos e políticas do EMS",
+      "FortiGate e filtro web FortiGuard",
+      "Wi-Fi 802.1x e certificados no macOS",
+      "Wi-Fi Cisco Meraki",
+      "Proofpoint DLP",
+      "Triagem de alertas SentinelOne",
+      "Correção de CVEs e advisories",
+      "Revisão de exceções de MFA",
+      "Active Directory",
+      "Auditorias AD x sistema de RH",
+      "SSO",
+      "Microsoft Entra e licenciamento 365",
+      "Suporte N1/N2",
+      "Troca de hardware e onboarding de notebooks",
+      "Publicação no Copilot Studio e Power Apps",
+      "Troubleshooting de licenças Microsoft 365",
+      "netLex",
+      "D4Sign",
+      "Senior X BPM",
+      "Escalonamento a fornecedores e aprovações",
+      "Movidesk MCP",
+      "Filas e SLAs no Movidesk",
+      "Fluxos de aprovação",
+      "Runbooks e análises de causa raiz",
+      "Vault no Obsidian",
+      "Curadoria no Confluence",
     ],
     worksTitle: {
       kicker: "04 / Entregas",
@@ -223,15 +273,93 @@ const content = {
         status: "online",
         name: "Aurum Investor",
         type: "plataforma financeira",
-        text: "Plataforma de organização financeira e investimentos: o Basic cuida de gastos, cartões e metas; o Premium consolida a carteira, análise mensal com IA e backtest versus CDI.",
+        text: "Plataforma de organização financeira e investimentos: o Basic cuida de gastos, cartões e metas; o Premium consolida a carteira, análise mensal com IA e backtest versus CDI; inclui ritmo das metas frente ao prazo, calendário mensal de caixa, retratos mensais do patrimônio, acompanhamento de dividendos previstos e recebidos e comparação de investimentos considerando impostos.",
         stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
       },
     ],
+    itProjectsTitle: {
+      kicker: "06 / Projetos de TI",
+      title: "Projetos de suporte, segurança e automação de TI.",
+    },
+    itProjects: [
+      {
+        status: "suporte",
+        name: "Migração de perfis móveis",
+        type: "infraestrutura",
+        text: "Migração dos perfis móveis do Active Directory para um novo servidor de arquivos, com isolamento por usuário.",
+        stack: ["Active Directory", "PowerShell", "NTFS/SMB", "Windows Server"],
+        accentTheme: "default",
+      },
+      {
+        status: "suporte",
+        name: "Gestão de acesso ZTNA/VPN",
+        type: "acesso remoto",
+        text: "Chaves temporárias de VPN e onboarding de ZTNA para colaboradores e equipes externas, incluindo correções de grupos e políticas.",
+        stack: ["FortiClient EMS", "ZTNA", "VPN", "FortiGate"],
+        accentTheme: "default",
+      },
+      {
+        status: "documentação",
+        name: "Base de conhecimento de suporte de TI",
+        type: "base de conhecimento",
+        text: "Chamados resolvidos transformados em uma biblioteca de como-fazer pesquisável, com runbooks e espelho no Confluence.",
+        stack: ["Obsidian", "Markdown", "Git", "Confluence", "Automação"],
+        accentTheme: "default",
+      },
+      {
+        status: "automação",
+        name: "Automação diária de KB e chamados",
+        type: "rotina",
+        text: "Rotina que lê chamados resolvidos e escreve procedimentos com fontes sanitizadas.",
+        stack: ["Movidesk API", "MCP", "Agentes de IA", "Git"],
+        accentTheme: "default",
+      },
+      {
+        status: "suporte",
+        name: "Implantação de Wi-Fi e certificados (macOS)",
+        type: "runbook",
+        text: "Runbook para Wi-Fi 802.1x com confiança no certificado do FortiGate e autenticação via Splash Page.",
+        stack: ["macOS", "802.1x", "FortiGate", "Certificados"],
+        accentTheme: "default",
+      },
+      {
+        status: "segurança",
+        name: "Acompanhamento de prevenção de perda de dados",
+        type: "segurança de endpoints",
+        text: "Fechamento de lacunas do agente Proofpoint DLP e definição de um processo de quarentena para dispositivos de colaboradores desligados.",
+        stack: ["Proofpoint DLP", "Segurança de endpoints", "Desligamentos"],
+        accentTheme: "default",
+      },
+      {
+        status: "suporte",
+        name: "Auditoria AD x sistema de RH",
+        type: "auditoria",
+        text: "Tratamento de chamados de auditoria automática e correção de campos do Active Directory conforme os registros de RH.",
+        stack: ["Active Directory", "Senior", "Qualidade de dados"],
+        accentTheme: "default",
+      },
+      {
+        status: "suporte",
+        name: "Configuração de fluxo de contratos (netLex + D4Sign)",
+        type: "sistemas de negócio",
+        text: "SSO, configuração de documentos e fluxos e limites de assinatura para a equipe jurídica.",
+        stack: ["netLex", "D4Sign", "SSO", "Administração SaaS"],
+        accentTheme: "default",
+      },
+      {
+        status: "documentação",
+        name: "Runbook de API de OCR",
+        type: "runbook",
+        text: "Guia de solução de problemas para um endpoint OCR em FastAPI usando Gemini e Docker.",
+        stack: ["Python", "FastAPI", "Docker", "Gemini API"],
+        accentTheme: "default",
+      },
+    ],
     credentialsTitle: {
-      kicker: "06 / Formacao",
+      kicker: "07 / Formacao",
       title: "Formacao academica e certificacoes.",
     },
     credentials: [
@@ -241,7 +369,7 @@ const content = {
       "Ingles avancado em escrita e intermediario em comunicacao verbal",
     ],
     contact: {
-      kicker: "07 / Contato",
+      kicker: "08 / Contato",
       title: "Escolha o melhor canal para falar comigo.",
       text: "Para contato profissional, use e-mail ou WhatsApp. O LinkedIn fica como apoio para ver historico e conexoes.",
       whatsapp: "Clique aqui para conversar pelo WhatsApp",
@@ -296,6 +424,7 @@ const content = {
       paragraphs: [
         "I started my IT career as a young apprentice at the company where I still work today. It was my first professional experience in a corporate environment, where I connected with support, urgent situations and problem solving.",
         "Over time, I grew into technical support, software deployment, IT projects, DLP, networks and automation. My way of working combines practical execution, clear communication and result validation.",
+        "On my own projects I use an AI-assisted pull request workflow with an activity log of every step, keeping the work traceable.",
       ],
     },
     timelineTitle: {
@@ -361,6 +490,44 @@ const content = {
       "Okta Workflows",
       "Pentest training",
       "PowerShell",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Python (Streamlit, FastAPI)",
+      "Docker",
+      "GitHub Actions",
+      "SQLite",
+      "OCR (Tesseract)",
+      "Technical documentation and knowledge bases",
+      "ZTNA and VPN access",
+      "Temporary VPN keys",
+      "EMS groups and policies",
+      "FortiGate and FortiGuard web filtering",
+      "Wi-Fi 802.1x and certificates on macOS",
+      "Cisco Meraki Wi-Fi",
+      "Proofpoint DLP",
+      "SentinelOne alert triage",
+      "CVE and advisory remediation",
+      "MFA exception reviews",
+      "Active Directory",
+      "AD vs HR-system audits",
+      "SSO",
+      "Microsoft Entra and 365 licensing",
+      "L1/L2 support",
+      "Hardware swaps and laptop onboarding",
+      "Copilot Studio and Power Apps publishing",
+      "Microsoft 365 license troubleshooting",
+      "netLex",
+      "D4Sign",
+      "Senior X BPM",
+      "Vendor escalation and approvals",
+      "Movidesk MCP",
+      "Movidesk queues and SLAs",
+      "Approval workflows",
+      "Runbooks and root-cause write-ups",
+      "Obsidian vault",
+      "Confluence curation",
     ],
     worksTitle: {
       kicker: "04 / Work",
@@ -428,15 +595,93 @@ const content = {
         status: "online",
         name: "Aurum Investor",
         type: "financial platform",
-        text: "Personal finance and investing platform: Basic organizes expenses, cards and goals; Premium unlocks a consolidated portfolio, monthly AI analysis and backtesting versus CDI.",
+        text: "Personal finance and investing platform: Basic organizes expenses, cards and goals; Premium unlocks a consolidated portfolio, monthly AI analysis and backtesting versus CDI; includes goal pace versus deadline, a monthly cash calendar, monthly net-worth snapshots, expected versus received dividend tracking and tax-aware investment comparison.",
         stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Cloudflare"],
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
       },
     ],
+    itProjectsTitle: {
+      kicker: "06 / IT projects",
+      title: "IT support, security and automation projects.",
+    },
+    itProjects: [
+      {
+        status: "support",
+        name: "Mobile profile migration",
+        type: "infrastructure",
+        text: "Moved Active Directory roaming profiles to a new file server with per-user isolation.",
+        stack: ["Active Directory", "PowerShell", "NTFS/SMB", "Windows Server"],
+        accentTheme: "default",
+      },
+      {
+        status: "support",
+        name: "ZTNA/VPN access management",
+        type: "remote access",
+        text: "Temporary VPN keys and ZTNA onboarding for employees and external teams, including group and policy fixes.",
+        stack: ["FortiClient EMS", "ZTNA", "VPN", "FortiGate"],
+        accentTheme: "default",
+      },
+      {
+        status: "documentation",
+        name: "IT support knowledge base",
+        type: "knowledge base",
+        text: "Solved tickets turned into a searchable how-to library with runbooks and a Confluence mirror.",
+        stack: ["Obsidian", "Markdown", "Git", "Confluence", "Automation"],
+        accentTheme: "default",
+      },
+      {
+        status: "automation",
+        name: "Daily KB and ticket automation",
+        type: "routine",
+        text: "A routine that reads resolved tickets and writes procedures with sanitised sources.",
+        stack: ["Movidesk API", "MCP", "AI agents", "Git"],
+        accentTheme: "default",
+      },
+      {
+        status: "support",
+        name: "Wi-Fi and certificate rollout (macOS)",
+        type: "runbook",
+        text: "Runbook for 802.1x Wi-Fi with FortiGate certificate trust and Splash Page authentication.",
+        stack: ["macOS", "802.1x", "FortiGate", "Certificates"],
+        accentTheme: "default",
+      },
+      {
+        status: "security",
+        name: "Data loss prevention follow-up",
+        type: "endpoint security",
+        text: "Closed Proofpoint DLP agent gaps and defined a quarantine process for offboarded devices.",
+        stack: ["Proofpoint DLP", "Endpoint security", "Offboarding"],
+        accentTheme: "default",
+      },
+      {
+        status: "support",
+        name: "AD vs HR system audit",
+        type: "audit",
+        text: "Handled automated audit tickets and corrected Active Directory fields against HR records.",
+        stack: ["Active Directory", "Senior", "Data quality"],
+        accentTheme: "default",
+      },
+      {
+        status: "support",
+        name: "Contract workflow setup (netLex + D4Sign)",
+        type: "business systems",
+        text: "SSO, document and workflow setup and signing limits for the legal team.",
+        stack: ["netLex", "D4Sign", "SSO", "SaaS admin"],
+        accentTheme: "default",
+      },
+      {
+        status: "documentation",
+        name: "OCR API runbook",
+        type: "runbook",
+        text: "Troubleshooting guide for a FastAPI OCR endpoint using Gemini and Docker.",
+        stack: ["Python", "FastAPI", "Docker", "Gemini API"],
+        accentTheme: "default",
+      },
+    ],
     credentialsTitle: {
-      kicker: "06 / Education",
+      kicker: "07 / Education",
       title: "Academic background and certifications.",
     },
     credentials: [
@@ -446,7 +691,7 @@ const content = {
       "Advanced written English and intermediate verbal communication",
     ],
     contact: {
-      kicker: "07 / Contact",
+      kicker: "08 / Contact",
       title: "Choose the best channel to reach me.",
       text: "For professional contact, use email or WhatsApp. LinkedIn is available as support for history and connections.",
       whatsapp: "Click here to talk on WhatsApp",
@@ -701,6 +946,54 @@ export default function Home() {
     return () => window.clearTimeout(timeout);
   }, [currentContent.heroPhrases, isDeleting, phraseIndex, typedText]);
 
+  const renderProjectCard = (project: ProjectCard) => {
+    const cardContent = (
+      <>
+        <div className="portfolio-topline">
+          <span>{project.status}</span>
+          <span>{project.type}</span>
+        </div>
+        {project.preview ? (
+          <div className="portfolio-preview">
+            <div
+              aria-hidden="true"
+              className="portfolio-preview-image"
+              style={{ backgroundImage: `url(${project.preview})` }}
+            />
+          </div>
+        ) : null}
+        <h3>{project.name}</h3>
+        <p>{project.text}</p>
+        <div className="portfolio-stack" aria-label={currentContent.aria.stack}>
+          {project.stack.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      </>
+    );
+
+    return project.href ? (
+      <a
+        className="portfolio-card reveal reveal-up magnetic-card"
+        data-accent-theme={project.accentTheme}
+        href={project.href}
+        key={project.name}
+        rel="noreferrer"
+        target="_blank"
+      >
+        {cardContent}
+      </a>
+    ) : (
+      <article
+        className="portfolio-card reveal reveal-up magnetic-card"
+        data-accent-theme={project.accentTheme}
+        key={project.name}
+      >
+        {cardContent}
+      </article>
+    );
+  };
+
   return (
     <main>
       <div className="noise" aria-hidden="true" />
@@ -947,53 +1240,17 @@ export default function Home() {
           <h2>{currentContent.portfolioTitle.title}</h2>
         </div>
         <div className="portfolio-grid">
-          {currentContent.portfolio.map((project) => {
-            const content = (
-              <>
-                <div className="portfolio-topline">
-                  <span>{project.status}</span>
-                  <span>{project.type}</span>
-                </div>
-                {"preview" in project ? (
-                  <div className="portfolio-preview">
-                    <div
-                      aria-hidden="true"
-                      className="portfolio-preview-image"
-                      style={{ backgroundImage: `url(${project.preview})` }}
-                    />
-                  </div>
-                ) : null}
-                <h3>{project.name}</h3>
-                <p>{project.text}</p>
-                <div className="portfolio-stack" aria-label={currentContent.aria.stack}>
-                  {project.stack.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
-                </div>
-              </>
-            );
+          {currentContent.portfolio.map(renderProjectCard)}
+        </div>
+      </section>
 
-            return project.href ? (
-              <a
-                className="portfolio-card reveal reveal-up magnetic-card"
-                data-accent-theme={"accentTheme" in project ? project.accentTheme : undefined}
-                href={project.href}
-                key={project.name}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {content}
-              </a>
-            ) : (
-              <article
-                className="portfolio-card reveal reveal-up magnetic-card"
-                data-accent-theme={"accentTheme" in project ? project.accentTheme : undefined}
-                key={project.name}
-              >
-                {content}
-              </article>
-            );
-          })}
+      <section className="portfolio" id="projetos-ti">
+        <div className="section-heading reveal reveal-left">
+          <span className="section-kicker">{currentContent.itProjectsTitle.kicker}</span>
+          <h2>{currentContent.itProjectsTitle.title}</h2>
+        </div>
+        <div className="portfolio-grid">
+          {currentContent.itProjects.map(renderProjectCard)}
         </div>
       </section>
 
