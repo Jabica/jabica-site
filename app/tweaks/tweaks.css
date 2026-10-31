@@ -18,9 +18,77 @@ html[data-surface="tweaks"] body {
   background: #000000;
   color: #f8fafc;
   color-scheme: dark;
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  isolation: isolate;
+  line-height: 1.5;
   min-height: 100vh;
   position: relative;
+}
+
+.tw-space {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(255, 184, 0, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(16, 185, 129, 0.1), transparent 55%),
+    radial-gradient(ellipse 50% 45% at 50% 42%, rgba(0, 0, 0, 0.55), transparent 70%);
+}
+
+.tw-stars {
+  animation: tw-twinkle 10s ease-in-out infinite;
+  background-image:
+    radial-gradient(1.5px 1.5px at 24px 36px, rgba(248, 250, 252, 0.85), transparent),
+    radial-gradient(1px 1px at 88px 140px, rgba(248, 250, 252, 0.55), transparent),
+    radial-gradient(2px 2px at 160px 48px, rgba(248, 250, 252, 0.7), transparent),
+    radial-gradient(1px 1px at 210px 210px, rgba(248, 250, 252, 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 280px 96px, rgba(248, 250, 252, 0.6), transparent),
+    radial-gradient(1px 1px at 340px 260px, rgba(248, 250, 252, 0.5), transparent),
+    radial-gradient(2px 2px at 420px 70px, rgba(248, 250, 252, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 490px 180px, rgba(248, 250, 252, 0.75), transparent),
+    radial-gradient(1px 1px at 60px 300px, rgba(248, 250, 252, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 380px 340px, rgba(248, 250, 252, 0.5), transparent),
+    radial-gradient(1px 1px at 140px 380px, rgba(248, 250, 252, 0.35), transparent),
+    radial-gradient(2px 2px at 540px 320px, rgba(248, 250, 252, 0.48), transparent);
+  background-repeat: repeat;
+  background-size: 600px 440px;
+  inset: 0;
+  opacity: 0.7;
+  position: absolute;
+}
+
+.tw-orb {
+  border-radius: 9999px;
+  display: none;
+  filter: blur(100px);
+  position: absolute;
+}
+
+.tw-orb-accent {
+  animation: tw-float 18s ease-in-out infinite;
+  background: rgba(255, 184, 0, 0.2);
+  height: 34rem;
+  right: -8rem;
+  top: 8%;
+  width: 34rem;
+}
+
+.tw-orb-emerald {
+  animation: tw-float 24s ease-in-out infinite reverse;
+  background: rgba(16, 185, 129, 0.16);
+  bottom: 4%;
+  height: 28rem;
+  left: -7rem;
+  width: 28rem;
+}
+
+.tw-lang {
+  position: relative;
+  z-index: 1;
 }
 
 .tweaks main {
@@ -41,6 +109,13 @@ html[data-surface="tweaks"] body {
 .tweaks dl,
 .tweaks dd {
   margin: 0;
+}
+
+.tweaks h1,
+.tweaks h2,
+.tweaks h3 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 .tweaks ul,
@@ -87,7 +162,8 @@ html[data-surface="tweaks"] body {
   background: #ffb800;
   border-radius: 999px;
   color: #000000;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 600;
   left: 16px;
   padding: 10px 14px;
   position: fixed;
@@ -105,14 +181,18 @@ html[data-surface="tweaks"] body {
   width: min(1120px, calc(100% - clamp(32px, 6vw, 80px)));
 }
 
-.tw-header {
+.tw-header,
+.tw-footer {
   backdrop-filter: blur(16px);
-  background: rgba(0, 0, 0, 0.88);
-  border-bottom: 1px solid rgba(248, 250, 252, 0.1);
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.tw-header {
+  border-bottom: 1px solid rgba(38, 38, 38, 0.5);
   position: sticky;
   top: 0;
   z-index: 40;
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .tw-header-inner {
@@ -132,7 +212,8 @@ html[data-surface="tweaks"] body {
   align-items: center;
   color: #f8fafc;
   display: inline-flex;
-  font-weight: 700;
+  font-size: 0.9375rem;
+  font-weight: 600;
   gap: 10px;
   grid-area: brand;
   min-height: 44px;
@@ -150,29 +231,31 @@ html[data-surface="tweaks"] body {
   border-radius: 8px;
   color: #ffb800;
   display: inline-flex;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 600;
   height: 34px;
   justify-content: center;
   width: 34px;
 }
 
 .tw-langs {
+  border: 1px solid #262626;
+  border-radius: 999px;
   display: inline-flex;
   grid-area: langs;
   justify-self: end;
   overflow: hidden;
-  border: 1px solid rgba(248, 250, 252, 0.18);
-  border-radius: 999px;
 }
 
 .tw-langs button {
   background: transparent;
   border: 0;
-  color: #f8fafc;
+  color: #9ca3af;
   cursor: pointer;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   min-height: 44px;
   min-width: 44px;
@@ -195,13 +278,13 @@ a.tw-header-download {
 
 .tw-menu {
   align-items: center;
-  border: 1px solid rgba(248, 250, 252, 0.2);
+  border: 1px solid #262626;
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   list-style: none;
   min-height: 44px;
   padding: 0 14px;
@@ -228,12 +311,17 @@ a.tw-header-download {
   display: flex;
 }
 
+.tweaks nav,
+.tweaks nav a {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
 .tweaks nav a {
   align-items: center;
-  color: #cbd5e1;
+  color: #9ca3af;
   display: inline-flex;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   min-height: 44px;
   text-decoration: none;
@@ -250,7 +338,8 @@ a.tw-header-download {
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 600;
   justify-content: center;
   min-height: 48px;
   padding: 0 22px;
@@ -268,7 +357,7 @@ a.tw-header-download {
 
 .tw-btn-ghost {
   background: transparent;
-  border-color: rgba(248, 250, 252, 0.24);
+  border-color: #262626;
   color: #f8fafc;
 }
 
@@ -284,17 +373,6 @@ a.tw-header-download {
   scroll-margin-top: 88px;
 }
 
-.tw-hero::before {
-  background: radial-gradient(circle, rgba(255, 184, 0, 0.16), transparent 68%);
-  content: "";
-  height: 420px;
-  pointer-events: none;
-  position: absolute;
-  right: -80px;
-  top: -40px;
-  width: 420px;
-}
-
 .tw-hero-grid {
   align-items: end;
   display: grid;
@@ -303,18 +381,18 @@ a.tw-header-download {
 }
 
 .tw-kicker {
-  color: #ffb800;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .tw-title {
-  font-size: clamp(3rem, 8vw, 6.4rem);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin-top: 14px;
   text-wrap: balance;
 }
@@ -329,13 +407,16 @@ a.tw-header-download {
 }
 
 .tw-heading .tw-lede {
+  color: #9ca3af;
+  font-size: 1rem;
+  line-height: 1.625;
   margin-top: 0;
 }
 
-.tw-lede {
-  color: #cbd5e1;
-  font-size: 1.05rem;
-  line-height: 1.65;
+.tw-hero .tw-lede {
+  color: #9ca3af;
+  font-size: 1rem;
+  line-height: 1.625;
   margin-top: 18px;
   max-width: 62ch;
 }
@@ -348,9 +429,9 @@ a.tw-header-download {
 }
 
 .tw-note {
-  color: #94a3b8;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   margin-top: 14px;
   text-transform: uppercase;
@@ -358,7 +439,7 @@ a.tw-header-download {
 
 .tw-spec {
   background: #111111;
-  border: 1px solid rgba(255, 184, 0, 0.28);
+  border: 1px solid #262626;
   border-radius: 12px;
   padding: 22px;
 }
@@ -369,7 +450,7 @@ a.tw-header-download {
 
 .tw-spec-row {
   align-items: baseline;
-  border-top: 1px solid rgba(248, 250, 252, 0.1);
+  border-top: 1px solid #262626;
   display: flex;
   gap: 16px;
   justify-content: space-between;
@@ -381,20 +462,21 @@ a.tw-header-download {
 }
 
 .tw-spec dt {
-  color: #94a3b8;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .tw-spec dd {
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 500;
   text-align: right;
 }
 
 .tw-section {
-  border-top: 1px solid rgba(248, 250, 252, 0.1);
+  border-top: 1px solid #262626;
   padding: 72px 0;
   scroll-margin-top: 88px;
 }
@@ -409,10 +491,10 @@ a.tw-header-download {
 .tw-section h2,
 .tw-steps h2,
 .tw-heading h2 {
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
   text-wrap: balance;
 }
 
@@ -427,7 +509,7 @@ a.tw-header-download {
 
 .tw-card {
   background: #111111;
-  border: 1px solid rgba(248, 250, 252, 0.08);
+  border: 1px solid #262626;
   border-radius: 12px;
   padding: 24px;
 }
@@ -435,16 +517,19 @@ a.tw-header-download {
 .tw-card h3,
 .tw-steps h3,
 .tw-faq h3 {
-  font-size: 1.25rem;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
 .tw-card p,
 .tw-steps p,
 .tw-faq p,
-.tw-pop {
-  color: #cbd5e1;
+.tw-pop,
+.tw-points {
+  color: #9ca3af;
+  font-size: 0.875rem;
   line-height: 1.6;
 }
 
@@ -465,7 +550,8 @@ a.tw-header-download {
 .tweaks a.tw-text-link {
   color: #ffb800;
   display: inline-flex;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 500;
   margin-top: 16px;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -482,7 +568,6 @@ a.tw-header-download {
 }
 
 .tw-points {
-  color: #cbd5e1;
   display: grid;
   gap: 8px;
   list-style: disc;
@@ -497,7 +582,7 @@ a.tw-header-download {
 
 .tw-steps-list li {
   background: #111111;
-  border: 1px solid rgba(248, 250, 252, 0.08);
+  border: 1px solid #262626;
   border-radius: 12px;
   display: grid;
   gap: 8px 18px;
@@ -507,9 +592,9 @@ a.tw-header-download {
 
 .tw-step-num {
   color: #ffb800;
-  font-family: var(--font-mono), monospace;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
   padding-top: 2px;
 }
 
@@ -525,17 +610,22 @@ a.tw-header-download {
 
 .tw-soon-label {
   color: #ffb800;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.tw-soon p:last-child {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
 .tw-compare article {
   align-items: center;
   background: #111111;
-  border: 1px dashed rgba(248, 250, 252, 0.22);
+  border: 1px dashed #262626;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -545,9 +635,15 @@ a.tw-header-download {
   text-align: center;
 }
 
+.tw-compare article p:last-child {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
 .tw-dash {
   color: #ffb800;
-  font-size: 2.5rem;
+  font-size: 1.875rem;
+  font-weight: 300;
   line-height: 1;
   margin: 12px 0;
 }
@@ -558,7 +654,7 @@ a.tw-header-download {
 
 .tw-term {
   background: #111111;
-  border: 1px solid rgba(248, 250, 252, 0.08);
+  border: 1px solid #262626;
   border-radius: 12px;
   padding: 8px;
   position: relative;
@@ -575,7 +671,8 @@ a.tw-header-download {
   color: #f8fafc;
   cursor: pointer;
   display: flex;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 500;
   gap: 12px;
   justify-content: space-between;
   min-height: 48px;
@@ -586,8 +683,9 @@ a.tw-header-download {
 
 .tw-term-mark {
   color: #ffb800;
-  font-family: var(--font-mono), monospace;
-  font-size: 1.1rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .tw-pop {
@@ -601,7 +699,7 @@ a.tw-header-download {
 
 .tw-faq-item {
   background: #111111;
-  border: 1px solid rgba(248, 250, 252, 0.08);
+  border: 1px solid #262626;
   border-radius: 12px;
 }
 
@@ -610,8 +708,9 @@ a.tw-header-download {
 }
 
 .tw-faq h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 .tw-faq button {
@@ -620,6 +719,8 @@ a.tw-header-download {
   border: 0;
   cursor: pointer;
   display: flex;
+  font-size: 1rem;
+  font-weight: 500;
   gap: 16px;
   justify-content: space-between;
   min-height: 56px;
@@ -630,8 +731,9 @@ a.tw-header-download {
 
 .tw-faq-mark {
   color: #ffb800;
-  font-family: var(--font-mono), monospace;
-  font-size: 1.25rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -640,15 +742,16 @@ a.tw-header-download {
 }
 
 .tw-footer {
-  border-top: 1px solid rgba(248, 250, 252, 0.1);
+  border-top: 1px solid rgba(38, 38, 38, 0.5);
   padding: 28px 0 48px;
 }
 
 .tw-footer-inner {
   align-items: flex-start;
-  color: #cbd5e1;
+  color: #9ca3af;
   display: flex;
   flex-direction: column;
+  font-size: 13px;
   gap: 14px;
 }
 
@@ -668,9 +771,31 @@ a.tw-header-download {
   color: #ffb800;
 }
 
+@media (min-width: 768px) {
+  .tw-orb {
+    display: block;
+  }
+}
+
 @media (max-width: 640px) {
   .tw-hero-actions .tw-btn {
     width: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .tw-title {
+    font-size: 3rem;
+  }
+
+  .tw-hero .tw-lede {
+    font-size: 1.125rem;
+  }
+
+  .tw-section h2,
+  .tw-steps h2,
+  .tw-heading h2 {
+    font-size: 2.25rem;
   }
 }
 
@@ -742,6 +867,34 @@ a.tw-header-download {
 
   .tw-terms {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .tw-title {
+    font-size: 3.25rem;
+  }
+}
+
+@keyframes tw-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(28px, -36px, 0);
+  }
+}
+
+@keyframes tw-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.85;
   }
 }
 

@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Geist, Geist_Mono } from "next/font/google";
+
+const geistSans = Geist({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-geist-sans",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-geist-mono",
+  fallback: ["ui-monospace", "monospace"],
+});
 
 const initScript = `(function () {
   var lang = "en";
@@ -35,9 +50,9 @@ export const metadata: Metadata = {
 
 export default function TweaksLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className={`${geistSans.variable} ${geistMono.variable} ${geistSans.className}`}>
       <script dangerouslySetInnerHTML={{ __html: initScript }} />
       {children}
-    </>
+    </div>
   );
 }
