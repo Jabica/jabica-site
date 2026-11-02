@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
 import {
   copy,
+  DOWNLOAD_NAME,
   DOWNLOAD_URL,
   SOURCE_URL,
   type Language,
@@ -332,13 +333,9 @@ function TweaksDocument({
               EN
             </button>
           </div>
-          <ExternalLink
-            className="tw-btn tw-btn-primary tw-header-download"
-            href={DOWNLOAD_URL}
-            newTabLabel={content.newTab}
-          >
+          <a className="tw-btn tw-btn-primary tw-header-download" download={DOWNLOAD_NAME} href={DOWNLOAD_URL}>
             {content.download}
-          </ExternalLink>
+          </a>
           <div className="tw-nav-slot">
             <details className="tw-nav-details">
               <summary aria-controls={`${lang}-nav`} className="tw-menu">
@@ -367,13 +364,9 @@ function TweaksDocument({
               </h1>
               <p className="tw-lede">{content.hero.text}</p>
               <div className="tw-hero-actions">
-                <ExternalLink
-                  className="tw-btn tw-btn-primary"
-                  href={DOWNLOAD_URL}
-                  newTabLabel={content.newTab}
-                >
+                <a className="tw-btn tw-btn-primary" download={DOWNLOAD_NAME} href={DOWNLOAD_URL}>
                   {content.hero.primary}
-                </ExternalLink>
+                </a>
                 <a className="tw-btn tw-btn-ghost" href={`#${lang}-steps`}>
                   {content.hero.secondary}
                 </a>
@@ -551,16 +544,18 @@ function TweaksDocument({
       </main>
 
       <footer className="tw-footer">
-        <div className="tw-wrap tw-footer-inner">
-          <p>
-            © 2026 Jabica Tweaks. {content.footer.rights} {content.footer.license}
+        <div className="tw-wrap">
+          <p className="tw-footer-line">
+            <span>© 2026 Jabica. {content.footer.rights}</span>
+            <span aria-hidden="true">•</span>
+            <span>{content.footer.developed}</span>
+            <Link className="tw-footer-brand" href="/">
+              <span aria-hidden="true" className="tw-footer-badge">
+                J
+              </span>
+              jabica.com.br
+            </Link>
           </p>
-          <div className="tw-footer-links">
-            <Link href="/">jabica.com.br</Link>
-            <ExternalLink href={SOURCE_URL} newTabLabel={content.newTab}>
-              {content.footer.source}
-            </ExternalLink>
-          </div>
         </div>
       </footer>
     </div>

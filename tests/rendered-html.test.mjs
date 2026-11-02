@@ -44,6 +44,9 @@ test("server-renders the portfolio shell", async () => {
   assert.match(html, /Choose the best channel to reach me/);
   assert.match(html, /Aurum Investor/);
   assert.match(html, /https:\/\/auruminvestor\.com/);
+  assert.match(html, /Jabica Tweaks/);
+  assert.match(html, /href="\/tweaks"/);
+  assert.match(html, /reversible changes, automatic backups/);
   assert.match(html, /ColPal \/ Okta Workflows integration/);
   assert.match(html, /Colgate-Palmolive \(ColPal\)/);
   assert.match(html, /contato@jabica\.com\.br/);
@@ -66,6 +69,8 @@ test("keeps the starter preview removed from the app", async () => {
   assert.match(page, /href="http:\/\/wa\.me\/5548996437375"/);
   assert.match(page, /accentTheme: "aurum"/);
   assert.match(page, /https:\/\/auruminvestor\.com/);
+  assert.match(page, /href: "\/tweaks"/);
+  assert.match(page, /accentTheme: "tweaks"/);
   assert.match(page, /Okta Workflows/);
   assert.match(page, /Colgate-Palmolive \(ColPal\)/);
   assert.match(

@@ -389,10 +389,10 @@ a.tw-header-download {
 }
 
 .tw-title {
-  font-size: 2.25rem;
+  font-size: 1.875rem;
   font-weight: 600;
   letter-spacing: -0.025em;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-top: 14px;
   text-wrap: balance;
 }
@@ -743,32 +743,57 @@ a.tw-header-download {
 
 .tw-footer {
   border-top: 1px solid rgba(38, 38, 38, 0.5);
-  padding: 28px 0 48px;
+  padding: 22px 0 36px;
 }
 
-.tw-footer-inner {
-  align-items: flex-start;
+.tw-footer-line {
+  align-items: center;
   color: #9ca3af;
   display: flex;
-  flex-direction: column;
-  font-size: 13px;
-  gap: 14px;
-}
-
-.tw-footer-links {
-  display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  font-size: 0.875rem;
+  gap: 8px 10px;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.tweaks .tw-footer a {
+.tw-footer-brand {
+  align-items: center;
   color: #f8fafc;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  display: inline-flex;
+  font-weight: 600;
+  gap: 8px;
+  text-decoration: none;
 }
 
-.tweaks .tw-footer a:hover {
+.tw-footer-brand:hover {
   color: #ffb800;
+}
+
+.tw-footer-badge {
+  align-items: center;
+  background: #111111;
+  border: 1px solid rgba(255, 184, 0, 0.45);
+  border-radius: 6px;
+  color: #ffb800;
+  display: inline-flex;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  height: 22px;
+  justify-content: center;
+  transition:
+    rotate 500ms ease,
+    background 250ms ease,
+    border-color 250ms ease;
+  width: 22px;
+}
+
+.tw-footer-line:hover .tw-footer-badge,
+.tw-footer-brand:hover .tw-footer-badge {
+  background: rgba(255, 184, 0, 0.16);
+  border-color: #ffb800;
+  rotate: 90deg;
 }
 
 @media (min-width: 768px) {
@@ -785,16 +810,6 @@ a.tw-header-download {
 
 @media (min-width: 640px) {
   .tw-title {
-    font-size: 3rem;
-  }
-
-  .tw-hero .tw-lede {
-    font-size: 1.125rem;
-  }
-
-  .tw-section h2,
-  .tw-steps h2,
-  .tw-heading h2 {
     font-size: 2.25rem;
   }
 }
@@ -813,11 +828,6 @@ a.tw-header-download {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .tw-footer-inner {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
 
 @media (min-width: 980px) {
@@ -872,7 +882,7 @@ a.tw-header-download {
 
 @media (min-width: 1024px) {
   .tw-title {
-    font-size: 3.25rem;
+    font-size: 2.5rem;
   }
 }
 

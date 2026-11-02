@@ -1,7 +1,8 @@
 export type Language = "pt" | "en";
 
-export const DOWNLOAD_URL = "https://github.com/Jabica/ResetExplode/releases";
-export const SOURCE_URL = "https://github.com/Jabica/ResetExplode";
+export const DOWNLOAD_URL = "/downloads/JabicaTweaks-v0.17.0-win-x64.zip";
+export const DOWNLOAD_NAME = "JabicaTweaks-v0.17.0-win-x64.zip";
+export const SOURCE_URL = "https://github.com/Jabica/JabicaTweaks";
 
 export type TweaksCopy = {
   skip: string;
@@ -72,8 +73,7 @@ export type TweaksCopy = {
   };
   footer: {
     rights: string;
-    license: string;
-    source: string;
+    developed: string;
   };
 };
 
@@ -290,8 +290,7 @@ export const copy = {
     },
     footer: {
       rights: "Todos os direitos reservados.",
-      license: "Ferramenta gratuita sob a licença MIT.",
-      source: "Código-fonte",
+      developed: "Desenvolvido por",
     },
   },
   en: {
@@ -506,8 +505,7 @@ export const copy = {
     },
     footer: {
       rights: "All rights reserved.",
-      license: "Free tool under the MIT license.",
-      source: "Source code",
+      developed: "Developed by",
     },
   },
 } satisfies Record<Language, TweaksCopy>;
