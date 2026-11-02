@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { registerCloudflareWorkersLoader } from "./support/cloudflare-workers-loader.mjs";
+
+registerCloudflareWorkersLoader();
 
 const appRoot = new URL("../app/", import.meta.url);
 const repoRoot = new URL("../", import.meta.url);
