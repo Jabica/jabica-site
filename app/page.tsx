@@ -279,6 +279,16 @@ const content = {
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
       },
+      {
+        status: "online",
+        name: "Jabica Tweaks",
+        type: "página do produto",
+        text: "Página da ferramenta gratuita de ajustes reversíveis no Windows, com backups automáticos, presets e código aberto (MIT).",
+        stack: ["Next.js", "React", "TypeScript", "CSS"],
+        href: "/tweaks",
+        preview: "/projects/jabica-tweaks-preview.png",
+        accentTheme: "tweaks",
+      },
     ],
     itProjectsTitle: {
       kicker: "06 / Projetos de TI",
@@ -600,6 +610,16 @@ const content = {
         href: "https://auruminvestor.com",
         preview: "/projects/aurum-investor-preview.webp",
         accentTheme: "aurum",
+      },
+      {
+        status: "online",
+        name: "Jabica Tweaks",
+        type: "product page",
+        text: "Landing page for the free Windows tweak tool: reversible changes, automatic backups, presets, and open-source MIT code.",
+        stack: ["Next.js", "React", "TypeScript", "CSS"],
+        href: "/tweaks",
+        preview: "/projects/jabica-tweaks-preview.png",
+        accentTheme: "tweaks",
       },
     ],
     itProjectsTitle: {
@@ -972,14 +992,16 @@ export default function Home() {
       </>
     );
 
+    const external = project.href?.startsWith("http") ?? false;
+
     return project.href ? (
       <a
         className="portfolio-card reveal reveal-up magnetic-card"
         data-accent-theme={project.accentTheme}
         href={project.href}
         key={project.name}
-        rel="noreferrer"
-        target="_blank"
+        rel={external ? "noreferrer" : undefined}
+        target={external ? "_blank" : undefined}
       >
         {cardContent}
       </a>
