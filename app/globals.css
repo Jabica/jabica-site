@@ -159,6 +159,45 @@ html[data-accent-theme="aurum"] {
   --shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
+html[data-accent-theme="tweaks"] {
+  --paper: #000000;
+  --paper-raised: #111111;
+  --ink: #f8fafc;
+  --ink-soft: #d5dde8;
+  --ink-muted: #9ca3af;
+  --line: rgba(255, 184, 0, 0.16);
+  --line-strong: rgba(255, 184, 0, 0.42);
+  --signal: #ffb800;
+  --signal-soft: rgba(255, 184, 0, 0.16);
+  --amber: #ffb800;
+  --header-bg: rgba(0, 0, 0, 0.82);
+  --grid-line: rgba(255, 184, 0, 0.08);
+  --grid-line-soft: rgba(16, 185, 129, 0.05);
+  --panel-glow: rgba(255, 184, 0, 0.24);
+  --panel-bg: linear-gradient(145deg, rgba(17, 17, 17, 0.97), rgba(0, 0, 0, 0.82));
+  --card-bg: rgba(17, 17, 17, 0.8);
+  --card-bg-soft: rgba(17, 17, 17, 0.6);
+  --chip-bg: rgba(17, 17, 17, 0.8);
+  --secondary-bg: rgba(17, 17, 17, 0.84);
+  --secondary-ink: #f8fafc;
+  --metric-bg: rgba(0, 0, 0, 0.5);
+  --metric-accent: rgba(255, 184, 0, 0.76);
+  --metric-accent-strong: #ffb800;
+  --action-ink: #000000;
+  --title-stroke: rgba(248, 250, 252, 0.76);
+  --title-stroke-active: rgba(255, 184, 0, 0.8);
+  --body-glow-a: rgba(255, 184, 0, 0.12);
+  --body-glow-b: rgba(16, 185, 129, 0.1);
+  --cursor-glow-a: rgba(255, 184, 0, 0.08);
+  --cursor-glow-b: rgba(16, 185, 129, 0.03);
+  --motion-line: rgba(255, 184, 0, 0.38);
+  --icon-cell-bg: rgba(255, 184, 0, 0.12);
+  --icon-cell-alt-bg: rgba(16, 185, 129, 0.18);
+  --number-line: rgba(255, 184, 0, 0.3);
+  --number-text: rgba(248, 250, 252, 0.74);
+  --shadow-strong: rgba(0, 0, 0, 0.5);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1031,7 +1070,7 @@ main::before {
 .portfolio-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   max-width: none;
 }
 
