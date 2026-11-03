@@ -582,8 +582,6 @@ export default function TweaksPage() {
     <div className="tweaks">
       <div aria-hidden="true" className="tw-space">
         <div className="tw-stars" />
-        <div className="tw-orb tw-orb-accent" />
-        <div className="tw-orb tw-orb-emerald" />
       </div>
       <p aria-live="polite" className="tw-sr">
         {announcement}

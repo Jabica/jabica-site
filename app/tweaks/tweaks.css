@@ -33,10 +33,6 @@ html[data-surface="tweaks"] body {
   pointer-events: none;
   position: fixed;
   z-index: 0;
-  background-image:
-    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(255, 184, 0, 0.12), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 0% 0%, rgba(16, 185, 129, 0.1), transparent 55%),
-    radial-gradient(ellipse 50% 45% at 50% 42%, rgba(0, 0, 0, 0.55), transparent 70%);
 }
 
 .tw-stars {
@@ -59,31 +55,6 @@ html[data-surface="tweaks"] body {
   inset: 0;
   opacity: 0.7;
   position: absolute;
-}
-
-.tw-orb {
-  border-radius: 9999px;
-  display: none;
-  filter: blur(100px);
-  position: absolute;
-}
-
-.tw-orb-accent {
-  animation: tw-float 18s ease-in-out infinite;
-  background: rgba(255, 184, 0, 0.2);
-  height: 34rem;
-  right: -8rem;
-  top: 8%;
-  width: 34rem;
-}
-
-.tw-orb-emerald {
-  animation: tw-float 24s ease-in-out infinite reverse;
-  background: rgba(16, 185, 129, 0.16);
-  bottom: 4%;
-  height: 28rem;
-  left: -7rem;
-  width: 28rem;
 }
 
 .tw-lang {
@@ -796,12 +767,6 @@ a.tw-header-download {
   rotate: 90deg;
 }
 
-@media (min-width: 768px) {
-  .tw-orb {
-    display: block;
-  }
-}
-
 @media (max-width: 640px) {
   .tw-hero-actions .tw-btn {
     width: 100%;
@@ -883,17 +848,6 @@ a.tw-header-download {
 @media (min-width: 1024px) {
   .tw-title {
     font-size: 2.5rem;
-  }
-}
-
-@keyframes tw-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(28px, -36px, 0);
   }
 }
 
