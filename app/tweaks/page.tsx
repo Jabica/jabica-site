@@ -549,7 +549,20 @@ function TweaksDocument({
             <span>© 2026 Jabica. {content.footer.rights}</span>
             <span aria-hidden="true">•</span>
             <span>{content.footer.developed}</span>
-            <Link className="tw-footer-brand" href="/">
+            <Link
+              className="tw-footer-brand"
+              href="/"
+              scroll={true}
+              onClick={() => {
+                // Ensure portfolio remount treats this as a top entry, not a restored mid-page position.
+                try {
+                  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+                  sessionStorage.setItem("jabica-home-scroll", "top");
+                } catch {
+                  /* ignore */
+                }
+              }}
+            >
               <span aria-hidden="true" className="tw-footer-badge">
                 J
               </span>

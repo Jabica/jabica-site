@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./portifolio.module.css";
 import { PinnedScrollSequence } from "./PinnedScrollSequence";
@@ -78,6 +78,44 @@ export default function PortifolioPage() {
   const headerRef = useRef<HTMLElement>(null);
 
   useMagneticButtons();
+
+  useLayoutEffect(() => {
+    const previousRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+
+    const resolveEntryScroll = () => {
+      let forceTop = false;
+      try {
+        forceTop = sessionStorage.getItem("jabica-home-scroll") === "top";
+        if (forceTop) sessionStorage.removeItem("jabica-home-scroll");
+      } catch {
+        /* ignore */
+      }
+      const hash = forceTop ? "" : window.location.hash.slice(1);
+      if (hash && document.getElementById(hash)) {
+        pendingScroll.current = hash;
+        return;
+      }
+      pendingScroll.current = null;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
+
+    resolveEntryScroll();
+    const onPageShow = (event: PageTransitionEvent) => {
+      // bfcache / late restoration: force top again unless a deep-link hash is present
+      if (!window.location.hash) {
+        pendingScroll.current = null;
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      } else if (event.persisted) {
+        resolveEntryScroll();
+      }
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => {
+      window.removeEventListener("pageshow", onPageShow);
+      history.scrollRestoration = previousRestoration;
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -193,7 +231,7 @@ export default function PortifolioPage() {
 
     const { ScrollTrigger } = ensureGsap();
     const id = requestAnimationFrame(() => {
-      if (menuWasOpen.current) {
+      if (menuWasOpen.current || shouldScroll) {
         ScrollTrigger.refresh();
         menuWasOpen.current = false;
       }
