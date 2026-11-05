@@ -10,6 +10,7 @@ import { FullscreenMenu } from "./FullscreenMenu";
 import { ensureGsap } from "./motion";
 import { GJMonogram } from "./GJMonogram";
 import { IntroOverlay } from "./IntroOverlay";
+import { InlineArrow } from "./InlineArrow";
 
 // Magnetic hover on buttons and CTA links: translates toward cursor within ~10px with spring back
 // Disabled under prefers-reduced-motion and on (pointer: coarse)
@@ -228,7 +229,7 @@ export default function PortifolioPage() {
         </Link>
         <div className={styles.navActions}>
           <Link className={styles.workButton} href="#builds" data-magnetic onClick={(event) => { event.preventDefault(); navigateTo("builds"); }}>
-            VIEW WORK <span aria-hidden="true">↗</span>
+            VIEW WORK <InlineArrow />
           </Link>
           <button
             className={styles.menuButton}

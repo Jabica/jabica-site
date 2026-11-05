@@ -293,6 +293,12 @@
   color: var(--ice);
 }
 
+.metaActionRow > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .hintDot {
   width: 6px;
   height: 6px;
@@ -500,6 +506,9 @@
 
 /* Scroll hint */
 .scrollHint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   position: absolute;
   z-index: 6;
   bottom: 24px;

@@ -4,8 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import styles from "./below.module.css";
 import { ensureGsap } from "./motion";
 
-const topLine = "SERVICE DESK IN REAL OPERATIONS  ✳  AUTOMATION THAT REDUCES REWORK  ✳  IT PROJECTS WITH IMPACT  ✳  ".repeat(4);
-const bottomLine = "HENRY SCHEIN BRAZIL  ✳  DENTAL SPEED GRAPH  ✳  SUPPORT  ✳  INFRASTRUCTURE  ✳  AUTOMATION  ✳  ".repeat(4);
+const topLine = "SERVICE DESK IN REAL OPERATIONS  *  AUTOMATION THAT REDUCES REWORK  *  IT PROJECTS WITH IMPACT  *  ".repeat(4);
+const bottomLine = "HENRY SCHEIN BRAZIL  *  DENTAL SPEED GRAPH  *  SUPPORT  *  INFRASTRUCTURE  *  AUTOMATION  *  ".repeat(4);
 
 export function MessageStatement() {
   const pinRef = useRef<HTMLDivElement>(null);

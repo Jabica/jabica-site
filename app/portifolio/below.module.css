@@ -646,12 +646,13 @@
   will-change: transform;
 }
 
-.ctaLink span {
+.ctaLink svg {
   display: inline-block;
+  flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
-.ctaLink:hover span {
+.ctaLink:hover svg {
   transform: translateX(10px);
 }
 
@@ -1196,7 +1197,7 @@
   .logo,
   .socialLink,
   .shotImg,
-  .ctaLink span,
+  .ctaLink svg,
   .menuLink,
   .footer a,
   .labButton,
@@ -1209,7 +1210,7 @@
   .buildCard[aria-pressed="true"],
   .buildCard:hover .buildArt,
   .buildCard[aria-pressed="true"] .buildArt,
-  .ctaLink:hover span {
+  .ctaLink:hover svg {
     transform: none;
   }
 
@@ -1342,7 +1343,9 @@
 }
 
 .buildDetail a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   margin-top: 6px;
   color: var(--accent-lit);
   text-decoration: underline;

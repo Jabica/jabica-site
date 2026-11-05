@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./below.module.css";
 import { LightAtmosphere } from "./LightAtmosphere";
 import { ensureGsap } from "./motion";
+import { InlineArrow } from "./InlineArrow";
 
 export function LabShowcase() {
   const rootRef = useRef<HTMLElement>(null);
@@ -49,7 +50,7 @@ export function LabShowcase() {
           Technical studies and projects built around practical problems and clear outcomes.
         </p>
         <Link className={styles.labButton} href="#builds" data-magnetic>
-          VIEW ALL BUILDS <span aria-hidden="true">↗</span>
+          VIEW ALL BUILDS <InlineArrow />
         </Link>
       </div>
       <article className={styles.poster} data-reveal>

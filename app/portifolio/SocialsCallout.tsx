@@ -36,7 +36,7 @@ export function SocialsCallout() {
     <section className={styles.socials} id="contact" ref={rootRef} aria-labelledby="socials-title">
       <LightAtmosphere />
       <p className={styles.socialMark} aria-hidden="true">
-        ✳
+        *
       </p>
       <h2 id="socials-title">{"WHAT'S UP ON SOCIALS"}</h2>
       <p className={styles.socialIntro}>For professional contact, use email or WhatsApp. LinkedIn is available for history and connections.</p>

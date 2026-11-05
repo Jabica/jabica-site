@@ -7,6 +7,7 @@ import styles from "./PinnedScrollSequence.module.css";
 import { PortraitReveal } from "./HeroReveal";
 import { GJMonogram } from "./GJMonogram";
 import { HeroMeteors, type MeteorStamp } from "./HeroMeteors";
+import { InlineArrow } from "./InlineArrow";
 
 interface PinnedScrollSequenceProps {
   children?: ReactNode;
@@ -538,7 +539,7 @@ export function PinnedScrollSequence({
             </div>
             <div className={styles.metaActionRow}>
               <span className={styles.hintDot} />
-              <span>MOVE TO REVEAL ✳ SCROLL TO PIN ↓</span>
+              <span>MOVE TO REVEAL * SCROLL TO PIN <InlineArrow direction="down" size={12} /></span>
             </div>
           </div>
         </div>
@@ -568,12 +569,12 @@ export function PinnedScrollSequence({
           <div ref={marqueeTiltRef} className={styles.marqueeTiltWrap}>
             <div ref={row1Ref} className={styles.textRowSerif}>
               <span>
-                GABRIEL JABOUR ✳ BUILD WHAT MATTERS ✳ GABRIEL JABOUR ✳ BUILD WHAT MATTERS ✳ GABRIEL JABOUR ✳ BUILD WHAT MATTERS ✳&nbsp;
+                GABRIEL JABOUR * BUILD WHAT MATTERS * GABRIEL JABOUR * BUILD WHAT MATTERS * GABRIEL JABOUR * BUILD WHAT MATTERS *&nbsp;
               </span>
             </div>
             <div ref={row2Ref} className={styles.textRowSans}>
               <span>
-                EVERYDAY IN MOTION ✳ LIVE BEYOND THE SCREEN ✳ EVERYDAY IN MOTION ✳ LIVE BEYOND THE SCREEN ✳ EVERYDAY IN MOTION ✳&nbsp;
+                EVERYDAY IN MOTION * LIVE BEYOND THE SCREEN * EVERYDAY IN MOTION * LIVE BEYOND THE SCREEN * EVERYDAY IN MOTION *&nbsp;
               </span>
             </div>
           </div>
@@ -630,7 +631,7 @@ export function PinnedScrollSequence({
         </div>
 
         <span ref={scrollHintRef} className={styles.scrollHint} aria-hidden="true">
-          KEEP SCROLLING ↓
+          KEEP SCROLLING <InlineArrow direction="down" size={12} />
         </span>
       </div>
     </section>

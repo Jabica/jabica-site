@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./below.module.css";
 import { ensureGsap } from "./motion";
+import { InlineArrow } from "./InlineArrow";
 
 const filters = ["All", "Web", "IT", "Security"] as const;
 type Filter = (typeof filters)[number];
@@ -79,7 +80,7 @@ export function BuildsHall() {
                 <span className={styles.buildName}>{build.name}</span>
                 <span className={styles.buildMeta}>{build.category}{build.year && <> · <strong>{build.year}</strong></>}</span>
               </button>
-              {pressed ? <div className={styles.buildDetail}><p>{build.note}</p><p>{build.stack}</p>{build.href ? <a href={build.href} target={build.href.startsWith("http") ? "_blank" : undefined} rel={build.href.startsWith("http") ? "noreferrer" : undefined}>View project ↗</a> : null}</div> : null}
+              {pressed ? <div className={styles.buildDetail}><p>{build.note}</p><p>{build.stack}</p>{build.href ? <a href={build.href} target={build.href.startsWith("http") ? "_blank" : undefined} rel={build.href.startsWith("http") ? "noreferrer" : undefined}>View project <InlineArrow /></a> : null}</div> : null}
             </article>
           );
         })}

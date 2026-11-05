@@ -41,7 +41,7 @@
 .navMonogram { position:fixed; z-index:51; top:24px; left:50%; transform:translateX(-50%); font-size:28px; pointer-events:auto; }
 .navActions { display:flex; gap:8px; align-items:center; pointer-events:auto; }
 .workButton { display:flex; align-items:center; gap:16px; height:42px; padding:0 16px; border:1px solid #fff; border-radius:7px; background:transparent; color:#fff; font-size:12px; font-weight:900; }
-.workButton span { font-size:19px; line-height:1; }
+.workButton svg { width:16px; height:16px; flex-shrink:0; }
 .menuButton { display:grid; place-content:center; gap:5px; width:42px; height:42px; border:1px solid #fff; border-radius:7px; background:transparent; cursor:pointer; }
 .menuButton span { display:block; width:17px; height:2px; background:#fff; transition:transform .25s; }
 .menuButton[aria-expanded="true"] span:first-child, .menuButtonOpen span:first-child { transform:translateY(3.5px) rotate(45deg); }

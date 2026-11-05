@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import styles from "./below.module.css";
 import { LightAtmosphere } from "./LightAtmosphere";
 import { ensureGsap } from "./motion";
+import { InlineArrow } from "./InlineArrow";
 
 export function WorkSplit() {
   const rootRef = useRef<HTMLElement>(null);
@@ -66,7 +67,7 @@ export function WorkSplit() {
             <em>ON</em> WORK
           </h2>
           <p>Service Desk Analyst at Henry Schein Brazil / Dental Speed Graph. Support, infrastructure, corporate projects and automation grounded in daily operations.</p>
-          <a href="#builds" data-magnetic>EXPLORE BUILDS <span aria-hidden="true">↗</span></a>
+          <a href="#builds" data-magnetic>EXPLORE BUILDS <InlineArrow /></a>
         </div>
       </article>
       <article id="off-work" className={styles.panelLight} data-tilt>
@@ -79,7 +80,7 @@ export function WorkSplit() {
           <p>Skiing and time away from the keyboard. <span className={styles.todo}>TODO: Gabriel to add other off-work interests.</span></p>
           {/* TODO [Gabriel]: Add genuine off-work interests beyond skiing and time away. */}
           <a href="#story" data-magnetic>
-            READ THE STORY <span aria-hidden="true">↗</span>
+            READ THE STORY <InlineArrow />
           </a>
         </div>
       </article>
