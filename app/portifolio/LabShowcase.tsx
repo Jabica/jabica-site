@@ -38,7 +38,7 @@ export function LabShowcase() {
       <LightAtmosphere />
       <div>
         <p className={styles.kicker} data-reveal>
-          Featured
+          Featured study
         </p>
         <h2 id="lab-title" data-reveal>
           GABRIEL
@@ -46,20 +46,19 @@ export function LabShowcase() {
           <em>LAB</em>
         </h2>
         <p className={styles.labCopy} data-reveal>
-          A placeholder drop for the work in progress: notes, tools, and experiments collected in
-          one place.
+          Technical studies and projects built around practical problems and clear outcomes.
         </p>
-        <Link className={styles.labButton} href="/#projetos" data-magnetic>
-          OPEN THE LAB <span aria-hidden="true">↗</span>
+        <Link className={styles.labButton} href="#builds" data-magnetic>
+          VIEW ALL BUILDS <span aria-hidden="true">↗</span>
         </Link>
       </div>
       <article className={styles.poster} data-reveal>
-        <p className={styles.kicker}>Case 01</p>
+        <p className={styles.kicker}>Featured case</p>
         <p>
-          <span>Featured study</span>
-          <strong>NIGHT DESK</strong>
+          <span>Coming soon</span>
+          <strong>CASE STUDY TO BE CONFIRMED</strong>
         </p>
-        <p>A monitoring story told as a poster, not a product shot.</p>
+        <p>A featured case will appear here once Gabriel selects one to share.</p>
       </article>
     </section>
   );

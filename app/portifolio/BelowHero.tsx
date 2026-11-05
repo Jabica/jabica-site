@@ -2,7 +2,9 @@
 
 import { useEffect } from "react";
 import { MessageStatement } from "./MessageStatement";
+import { OperationalMetrics } from "./OperationalMetrics";
 import { EditorialStory } from "./EditorialStory";
+import { CareerTimeline } from "./CareerTimeline";
 import { HorizontalGallery } from "./HorizontalGallery";
 import { WorkSplit } from "./WorkSplit";
 import { BuildsHall } from "./BuildsHall";
@@ -28,7 +30,9 @@ export function BelowHero() {
   return (
     <>
       <MessageStatement />
+      <OperationalMetrics />
       <EditorialStory />
+      <CareerTimeline />
       <HorizontalGallery />
       <WorkSplit />
       <BuildsHall />

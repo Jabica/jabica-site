@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = localFont({
+  src: "./fonts/space-grotesk-latin.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
+  weight: "300 700",
 });
 
-const mono = JetBrains_Mono({
+const mono = localFont({
+  src: "./fonts/jetbrains-mono-latin.woff2",
   variable: "--font-mono",
-  subsets: ["latin"],
+  weight: "100 800",
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Jabour | Technology, automation and digital operations",
+  title: "Gabriel Jabour — In Motion",
   description:
-    "Biographical site of Gabriel Jabour: Service Desk Analyst with experience in support, Windows, macOS, DLP, IT projects and operational automation.",
+    "An interactive portrait and personal portfolio of Gabriel Jabour, from technology projects to moments beyond the desk.",
   icons: {
-    icon: "./favicon.svg",
-    shortcut: "./favicon.svg",
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
   },
 };
 

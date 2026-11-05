@@ -79,13 +79,15 @@ export function EditorialStory() {
               />
             </div>
           </div>
-          <figcaption>São Paulo, 2024</figcaption>
+          <figcaption>Florianópolis, BR</figcaption>
         </figure>
         <blockquote className={styles.quote} data-reveal>
           <p>
-            It does not matter where you start. It matters what you <em>keep shipping.</em>
+            I started my IT career as a young apprentice at the company where I still work today.
+            It was my first professional experience in a corporate environment, where I connected
+            with support, urgent situations and <em>problem solving.</em>
           </p>
-          <footer>Gabriel</footer>
+          <footer>Gabriel Jabour — Service Desk Analyst</footer>
         </blockquote>
         <figure className={styles.shot} data-reveal>
           <div className={styles.shotFrame} data-shot>
@@ -99,18 +101,18 @@ export function EditorialStory() {
               />
             </div>
           </div>
-          <figcaption>Slope day, 2025</figcaption>
+          <figcaption>Chile, 2024</figcaption>
         </figure>
       </div>
       <div className={styles.storyBottom}>
         <div className={styles.noteCard} data-reveal data-shot>
-          <p className={styles.kicker}>Notebook, 2026</p>
-          <p>A field note for the version of the work that never makes the README.</p>
+          <p className={styles.kicker}>Traceable execution</p>
+          <p>On my own projects I use an AI-assisted pull request workflow with an activity log of every step.</p>
         </div>
         <p className={styles.storyBody} data-reveal>
-          Technology, automation, and digital operations shape the desk. Away from the screen, the
-          same curiosity keeps moving. The useful thing is not the first script. It is the one that
-          still runs on a <em>bad day.</em>
+          Over time, I grew into technical support, software deployment, IT projects, DLP,
+          networks and automation. My way of working combines practical execution,
+          clear communication and <em>result validation.</em>
         </p>
       </div>
     </section>

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  subsets: ["latin"],
-  weight: "variable",
+const geistSans = localFont({
+  src: "../fonts/geist-latin.woff2",
+  weight: "100 900",
   variable: "--font-geist-sans",
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  weight: "variable",
+const geistMono = localFont({
+  src: "../fonts/geist-mono-latin.woff2",
+  weight: "100 900",
   variable: "--font-geist-mono",
   fallback: ["ui-monospace", "monospace"],
 });

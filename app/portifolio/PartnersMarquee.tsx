@@ -2,7 +2,8 @@
 
 import styles from "./below.module.css";
 
-const logos = ["ACME", "NOVA", "ORBIT", "NORTH", "HELIX", "PULSE", "VECTOR", "FORGE"];
+// Dental Speed logo awaits permission.
+const logos = ["HENRY SCHEIN", "OKTA", "FORTICLIENT EMS", "PROOFPOINT DLP", "NEXT.JS", "ACTIVE DIRECTORY", "POWERSHELL", "DOCKER", "TYPESCRIPT", "CLOUDFLARE", "SENTINELONE", "CISCO MERAKI", "CONFLUENCE", "PYTHON", "OBSIDIAN"];
 
 function LogoSet({ hidden }: { hidden?: boolean }) {
   return (
@@ -19,7 +20,8 @@ function LogoSet({ hidden }: { hidden?: boolean }) {
 export function PartnersMarquee() {
   return (
     <section className={styles.partners} id="partners" data-nav-dark aria-labelledby="partners-title">
-      <h2 id="partners-title">Partners and campaigns</h2>
+      <h2 id="partners-title">Enterprise stack &amp; ecosystem</h2>
+      <p className={styles.partnersIntro}>Platforms, security tools and development technologies used in operations and projects.</p>
       <div className={styles.logoViewport}>
         <div className={styles.logoTrack}>
           <LogoSet />

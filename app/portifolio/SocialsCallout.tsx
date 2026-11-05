@@ -39,6 +39,7 @@ export function SocialsCallout() {
         ✳
       </p>
       <h2 id="socials-title">{"WHAT'S UP ON SOCIALS"}</h2>
+      <p className={styles.socialIntro}>For professional contact, use email or WhatsApp. LinkedIn is available for history and connections.</p>
       <ul className={styles.socialList}>
         {socialLinks.map((item) => (
           <li key={item.label}>

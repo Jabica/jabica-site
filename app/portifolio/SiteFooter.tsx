@@ -7,9 +7,11 @@ import { ensureGsap } from "./motion";
 import { externalLinkProps, socialLinks } from "./siteLinks";
 
 const pages = [
-  { label: "Home", href: "/portifolio" },
+  { label: "Home", href: "/" },
   { label: "On work", href: "#on-work" },
   { label: "Off work", href: "#off-work" },
+  { label: "Metrics", href: "#metrics" },
+  { label: "Timeline", href: "#timeline" },
   { label: "Builds", href: "#builds" },
   { label: "Lab", href: "#lab" },
   { label: "Contact", href: "#contact" },
@@ -79,7 +81,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className={styles.legal} data-reveal>
-        <span>© 2026 Jabica. All rights reserved.</span>
+        <span>© 2026 Jabica. All rights reserved. Developed by Gabriel Jabour.</span>
         <a href="https://jabica.com.br" target="_blank" rel="noreferrer">
           jabica.com.br
         </a>

@@ -4,8 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import styles from "./below.module.css";
 import { ensureGsap } from "./motion";
 
-const topLine = "MESSAGE FROM GABRIEL  ✳  ".repeat(8);
-const bottomLine = "IT & DEV  ✳  BUILDING IN MOTION  ✳  ".repeat(8);
+const topLine = "SERVICE DESK IN REAL OPERATIONS  ✳  AUTOMATION THAT REDUCES REWORK  ✳  IT PROJECTS WITH IMPACT  ✳  ".repeat(4);
+const bottomLine = "HENRY SCHEIN BRAZIL  ✳  DENTAL SPEED GRAPH  ✳  SUPPORT  ✳  INFRASTRUCTURE  ✳  AUTOMATION  ✳  ".repeat(4);
 
 export function MessageStatement() {
   const pinRef = useRef<HTMLDivElement>(null);
@@ -39,14 +39,14 @@ export function MessageStatement() {
   return (
     <section className={styles.message} id="message" data-nav-dark aria-labelledby="message-title">
       <div className={styles.marqueeViewport} aria-hidden="true">
-        <p className={styles.marqueeStatic}>MESSAGE FROM GABRIEL</p>
+        <p className={styles.marqueeStatic}>SERVICE DESK IN REAL OPERATIONS</p>
         <div className={styles.marqueeTrack}>
           <span>{topLine}</span>
           <span>{topLine}</span>
         </div>
       </div>
       <div className={`${styles.marqueeViewport} ${styles.marqueeReverse}`} aria-hidden="true">
-        <p className={styles.marqueeStatic}>IT & DEV · BUILDING IN MOTION</p>
+        <p className={styles.marqueeStatic}>SUPPORT · INFRASTRUCTURE · AUTOMATION</p>
         <div className={styles.marqueeTrack}>
           <span>{bottomLine}</span>
           <span>{bottomLine}</span>
@@ -54,20 +54,21 @@ export function MessageStatement() {
       </div>
       <div className={styles.statementPin} ref={pinRef}>
         <p className={styles.kicker} data-line>
-          01 / Message from Gabriel
+          01 / Operational philosophy
         </p>
         <h2 id="message-title" className={styles.statement}>
-          <span data-line>BUILDING SYSTEMS</span>
+          <span data-line>REDUCING REWORK.</span>
           <span data-line>
-            THAT STAY <em>IN MOTION.</em>
+            PROTECTING <em>OPERATIONS.</em>
           </span>
-          <span data-line>IT, OPS, AND THE</span>
+          <span data-line>WITHOUT SLOWING</span>
           <span data-line>
-            <em>LONG GAME.</em>
+            <em>DOWN THE USER.</em>
           </span>
         </h2>
         <p className={styles.statementNote} data-line>
-          A note on IT, development, and building while things are in motion.
+          Service Desk Analyst at Henry Schein Brazil / Dental Speed Graph. Working across support,
+          infrastructure, corporate projects and automation to reduce rework and increase reliability.
         </p>
       </div>
     </section>

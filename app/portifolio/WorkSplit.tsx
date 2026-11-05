@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import styles from "./below.module.css";
 import { LightAtmosphere } from "./LightAtmosphere";
 import { ensureGsap } from "./motion";
@@ -61,27 +60,26 @@ export function WorkSplit() {
   return (
     <section className={styles.split} ref={rootRef} aria-label="On work and off work">
       <article id="on-work" className={styles.panel} data-tilt data-nav-dark>
-        <p className={styles.kicker}>01</p>
+        <p className={styles.kicker}>01 / In the trenches</p>
         <div>
           <h2>
             <em>ON</em> WORK
           </h2>
-          <p>Systems, automation, and the stack I ship.</p>
-          <Link href="/#projetos" data-magnetic>
-            VIEW PROJECTS <span aria-hidden="true">↗</span>
-          </Link>
+          <p>Service Desk Analyst at Henry Schein Brazil / Dental Speed Graph. Support, infrastructure, corporate projects and automation grounded in daily operations.</p>
+          <a href="#builds" data-magnetic>EXPLORE BUILDS <span aria-hidden="true">↗</span></a>
         </div>
       </article>
       <article id="off-work" className={styles.panelLight} data-tilt>
         <LightAtmosphere />
-        <p className={styles.kicker}>02</p>
+        <p className={styles.kicker}>02 / Beyond the screen</p>
         <div>
           <h2>
             <em>OFF</em> WORK
           </h2>
-          <p>Skis, streets, and time away from the keyboard.</p>
+          <p>Skiing and time away from the keyboard. <span className={styles.todo}>TODO: Gabriel to add other off-work interests.</span></p>
+          {/* TODO [Gabriel]: Add genuine off-work interests beyond skiing and time away. */}
           <a href="#story" data-magnetic>
-            READ THE NOTES <span aria-hidden="true">↗</span>
+            READ THE STORY <span aria-hidden="true">↗</span>
           </a>
         </div>
       </article>

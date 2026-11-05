@@ -11,9 +11,11 @@ const links = [
   { label: "HOME", index: "01", target: null },
   { label: "ON WORK", index: "02", target: "on-work" },
   { label: "OFF WORK", index: "03", target: "off-work" },
-  { label: "BUILDS", index: "04", target: "builds" },
-  { label: "LAB", index: "05", target: "lab" },
-  { label: "CONTACT", index: "06", target: "contact" },
+  { label: "METRICS", index: "04", target: "metrics" },
+  { label: "TIMELINE", index: "05", target: "timeline" },
+  { label: "BUILDS", index: "06", target: "builds" },
+  { label: "LAB", index: "07", target: "lab" },
+  { label: "CONTACT", index: "08", target: "contact" },
 ] as const;
 
 type FullscreenMenuProps = {
@@ -122,7 +124,7 @@ export function FullscreenMenu({ open, onClose, onNavigate }: FullscreenMenuProp
           <a
             key={link.label}
             className={styles.menuLink}
-            href={link.target ? `#${link.target}` : "/portifolio"}
+            href={link.target ? `#${link.target}` : "/"}
             data-menu-item
             onClick={(event) => {
               event.preventDefault();

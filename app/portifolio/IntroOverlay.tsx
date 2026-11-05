@@ -5,7 +5,6 @@ import { GJMonogram, GJ_PATHS } from "./GJMonogram";
 import { ensureGsap } from "./motion";
 import styles from "./IntroOverlay.module.css";
 
-const introSessionKey = "portifolio-intro-complete";
 let activeIntro: HTMLDivElement | null = null;
 let introComplete = false;
 const waitingIntros = new Set<() => void>();
@@ -24,7 +23,7 @@ export function IntroOverlay({ onComplete }: { onComplete: () => void }) {
     if (!overlay || startedRef.current) return;
     startedRef.current = true;
 
-    if (introComplete || sessionStorage.getItem(introSessionKey) === "true") {
+    if (introComplete) {
       overlay.style.display = "none";
       onComplete();
       return () => { startedRef.current = false; };
@@ -41,7 +40,6 @@ export function IntroOverlay({ onComplete }: { onComplete: () => void }) {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       introComplete = true;
-      sessionStorage.setItem(introSessionKey, "true");
       overlay.style.display = "none";
       onComplete();
       return () => { startedRef.current = false; };
@@ -80,7 +78,6 @@ export function IntroOverlay({ onComplete }: { onComplete: () => void }) {
       timeline = gsap.timeline({ onComplete: () => {
         overlay.style.display = "none";
         introComplete = true;
-        sessionStorage.setItem(introSessionKey, "true");
         activeIntro = null;
         onComplete();
         waitingIntros.forEach((complete) => complete());
