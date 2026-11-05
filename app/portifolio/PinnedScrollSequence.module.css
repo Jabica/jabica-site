@@ -1,0 +1,671 @@
+.sequenceSection {
+  position: relative;
+  height: 155vh;
+  background: var(--snow-white);
+  color: var(--hero-ink);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8faf9;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+/* Soft depth behind the portrait without visible texture. */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 58% 48% at 50% 58%, rgba(149, 166, 183, 0.12), transparent 78%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stageDarkBackdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--ink);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.backgroundLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 1;
+}
+
+.meteorLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.meteorCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Lando-style living UI info card bottom-left */
+.heroInfoCardWrap {
+  position: absolute;
+  left: clamp(20px, 4vw, 56px);
+  bottom: clamp(24px, 4.5vh, 48px);
+  z-index: 10;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+.heroInfoCard {
+  position: relative;
+  width: clamp(230px, 21vw, 290px);
+  padding: 16px 20px 18px;
+  background: rgba(2, 48, 94, 0.74);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(149, 166, 183, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  color: var(--snow);
+  overflow: hidden;
+  will-change: transform;
+  animation: cardEntrance 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.heroInfoCard:hover {
+  border-color: rgba(58, 123, 166, 0.7);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 24px rgba(58, 123, 166, 0.3);
+}
+
+.infoCardTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Live status accent */
+.infoCardPulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--live-red);
+  box-shadow: 0 0 8px var(--live-red);
+  animation: dotBlink 2.2s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+
+.infoCardLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: var(--ice);
+  text-transform: uppercase;
+}
+
+.infoCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.infoCardName {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.35vw, 17px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--snow);
+  line-height: 1.15;
+}
+
+.infoCardRole {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--accent-lit);
+}
+
+.infoCardTrack {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: rgba(149, 166, 183, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.infoCardProgress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, var(--sky-blue), var(--glacier), transparent);
+  border-radius: 2px;
+  animation: trackSweep 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes trackSweep {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(-30px, 16px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Living UI corner meta details bottom-right */
+.heroCornerMetaWrap {
+  position: absolute;
+  right: clamp(20px, 4vw, 56px);
+  bottom: clamp(24px, 4.5vh, 48px);
+  z-index: 10;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.heroCornerMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  color: var(--snow);
+  font-family: var(--font-mono), monospace;
+  will-change: transform;
+  animation: metaEntrance 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+}
+
+@keyframes metaEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(30px, 16px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ice);
+}
+
+.metaCoords {
+  opacity: 0.7;
+}
+
+.metaLoc {
+  color: #ff2a4b;
+  font-weight: 700;
+}
+
+.metaClockRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #ff2a4b;
+}
+
+.clockPulseDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff2a4b;
+  box-shadow: 0 0 6px rgba(255, 42, 75, 0.65);
+}
+
+.metaClock {
+  font-variant-numeric: tabular-nums;
+}
+
+.metaActionRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--ice);
+}
+
+.hintDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sky-blue);
+}
+
+.lockButton {
+  display: none;
+}
+
+/* Header lockup: GJ mark + caption above the frame */
+.headerLockup {
+  position: absolute;
+  top: clamp(22px, 8vh, 75px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 6;
+  white-space: nowrap;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.gjMark {
+  display: block;
+  font-size: clamp(19px, 2vw, 24px);
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(9px, 1.1vw, 11px);
+  letter-spacing: 0.16em;
+  color: var(--ice);
+  text-transform: uppercase;
+}
+
+/* Text rows behind the card (marquee visible on left and right) */
+.textRows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  will-change: opacity;
+}
+
+.marqueeTiltWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  will-change: transform;
+}
+
+.textRows div span {
+  display: block;
+}
+
+.textRows div div {
+  width: max-content;
+  white-space: nowrap;
+  line-height: 0.92;
+  will-change: transform;
+  user-select: none;
+}
+
+/* Blue rows stay legible through the light-to-dark stage transition. */
+.textRowSerif {
+  color: var(--sky-blue);
+  font-family: Georgia, serif;
+  font-size: clamp(80px, 11vw, 200px);
+  letter-spacing: -0.07em;
+}
+
+.textRowSans {
+  color: var(--deep-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(75px, 10.5vw, 185px);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+/* Framed photo card with neon signature — wide landscape card (~68vw wide, 16:9) */
+.frameContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(68vw, 1020px);
+  aspect-ratio: 16 / 9;
+  z-index: 5;
+  will-change: transform;
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cardTiltWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photoCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 0 solid rgba(238, 243, 247, 0);
+  border-radius: 0;
+  overflow: hidden;
+  background-color: transparent;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  will-change: transform, border-radius, border-color, box-shadow;
+  pointer-events: auto;
+}
+
+/* Dark navy backdrop inside the card, so the red signature reads as neon */
+.cardBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark-navy);
+  background-image: linear-gradient(165deg, var(--navy), var(--dark-navy) 55%, var(--ink));
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* Faint contour lines overlay on the card backdrop */
+.cardContours {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+/* Portrait centered, bottom-anchored, contain-style, never cropped to face */
+.photoInner {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  aspect-ratio: 1086 / 1448;
+  z-index: 2;
+  will-change: transform, filter;
+  animation: portraitEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+@keyframes portraitEntrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Neon signature: cursive "Jabour" + flourish underline */
+.signatureSvg {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%) rotate(-3deg);
+  width: min(52%, 430px);
+  height: auto;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+  filter: drop-shadow(0 0 3px rgba(255, 42, 75, 0.5))
+          drop-shadow(0 0 8px rgba(192, 1, 27, 0.3));
+  will-change: filter;
+}
+
+.signaturePath {
+  fill: none;
+  stroke: #ff2a4b;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Scroll hint */
+.scrollHint {
+  position: absolute;
+  z-index: 6;
+  bottom: 24px;
+  right: 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ice);
+  pointer-events: none;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .sequenceSection {
+    height: 145vh;
+  }
+  .heroInfoCardWrap {
+    left: 18px;
+    bottom: 20px;
+  }
+  .heroInfoCard {
+    width: auto;
+    min-width: 190px;
+    padding: 12px 14px 14px;
+  }
+  .infoCardName {
+    font-size: 13px;
+  }
+  .infoCardRole {
+    font-size: 10px;
+  }
+  .heroCornerMetaWrap {
+    display: none;
+  }
+  .lockButton {
+    display: block;
+    position: absolute;
+    z-index: 15;
+    right: 18px;
+    bottom: 18px;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--deep-blue);
+    color: var(--snow);
+    font-family: var(--font-mono), monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .headerLockup {
+    top: clamp(20px, 6.5vh, 48px);
+    gap: 6px;
+  }
+  .gjMark {
+    font-size: 19px;
+  }
+  .caption {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+  .frameContainer {
+    width: min(92vw, 440px);
+    aspect-ratio: 16 / 10;
+  }
+  .textRowSerif {
+    font-size: 18vw;
+  }
+  .textRowSans {
+    font-size: 17vw;
+  }
+  .signatureSvg {
+    top: 60%;
+    width: min(85%, 320px);
+  }
+  .signaturePath {
+    stroke-width: 3.5;
+  }
+  .scrollHint {
+    bottom: 18px;
+    right: 18px;
+    font-size: 9px;
+  }
+}
+
+/* Reduced motion: Show final static state with no pinning */
+@media (prefers-reduced-motion: reduce) {
+  .sequenceSection {
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  .stage {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 100px 20px 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .stageDarkBackdrop {
+    opacity: 1 !important;
+  }
+  .meteorLayer {
+    display: none !important;
+  }
+  .heroInfoCardWrap,
+  .heroCornerMetaWrap,
+  .lockButton {
+    display: none !important;
+  }
+  .heroInfoCard,
+  .heroCornerMeta,
+  .photoInner {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .headerLockup {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin-bottom: 28px !important;
+  }
+  .frameContainer {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: scale(0.90) !important;
+    margin: 0 auto !important;
+  }
+  .cardBackdrop {
+    opacity: 1 !important;
+  }
+  .photoCard {
+    border-radius: 8px !important;
+    border-width: 2px !important;
+    border-color: rgba(238, 243, 247, 0.9) !important;
+    box-shadow: 0 28px 75px -15px rgba(0, 0, 0, 0.75) !important;
+  }
+  .photoInner {
+    filter: grayscale(100%) contrast(110%) !important;
+    transform: translateX(-50%) !important;
+  }
+  .signaturePath {
+    stroke-dashoffset: 0 !important;
+  }
+  .signatureSvg {
+    filter: drop-shadow(0 0 5px rgba(255, 42, 75, 0.7))
+            drop-shadow(0 0 12px rgba(192, 1, 27, 0.45)) !important;
+  }
+  .gjMark span { animation: none !important; }
+  .textRows {
+    position: absolute !important;
+    opacity: 1 !important;
+  }
+  .textRowSerif,
+  .textRowSans {
+    transform: none !important;
+  }
+  .scrollHint {
+    opacity: 1 !important;
+  }
+}
+

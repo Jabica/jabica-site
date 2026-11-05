@@ -1,0 +1,26 @@
+.mark { display:inline-block; width:1.875em; height:1.5em; line-height:0; vertical-align:middle; mix-blend-mode:normal; isolation:isolate; filter:none; --pull-x:0px; --pull-y:0px; }
+.navy { --gj-g:#02305e; --gj-j:#7fb8e6; --gj-gap:#eef3f7; }
+.ice { --gj-g:#eef3f7; --gj-j:#9ccbf0; --gj-gap:#02305e; }
+.pull { display:block; width:100%; height:100%; transform:translate3d(var(--pull-x),var(--pull-y),0); transition:transform 450ms cubic-bezier(.2,.8,.2,1); }
+.svg { display:block; width:100%; height:100%; overflow:visible; }
+.entered .svg, .scrollDraw .svg { animation:float 5.8s ease-in-out 1.2s infinite; }
+.glyph { stroke-width:1.2; stroke-linejoin:round; stroke-dasharray:500; stroke-dashoffset:0; fill-opacity:1; }
+.g { fill:var(--gj-g); stroke:var(--gj-g); }
+.j { fill:var(--gj-j); stroke:var(--gj-j); }
+.gap { fill:none; stroke:var(--gj-gap); stroke-width:4; stroke-linejoin:round; }
+.enterDraw .glyph, .intro .glyph, .scrollDraw .glyph { stroke-dashoffset:500; fill-opacity:0; }
+.enterDraw .gap { stroke:transparent; }
+.entered .glyph { animation:draw 1.05s cubic-bezier(.2,.75,.2,1) forwards, fillIn 1.05s ease-in forwards; }
+.scrollDraw .glyph { stroke:transparent; }
+.scrollDraw .gap { stroke:transparent; }
+.intro .shimmer { display:none; }
+.shimmer { opacity:0; animation:shimmer 5.8s ease-in-out 2.2s infinite; pointer-events:none; }
+.sweepPath { fill:none; stroke-width:2.5; stroke-dasharray:35 500; stroke-dashoffset:500; animation:sweep 5.8s ease-in-out 2.2s infinite; }
+@keyframes draw { to { stroke-dashoffset:0; } }
+@keyframes markIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fillIn { 0%,65% { fill-opacity:0; } 100% { fill-opacity:1; } }
+@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-2px); } }
+@keyframes shimmer { 0%,18% { opacity:0; } 24%,38% { opacity:.7; } 44%,100% { opacity:0; } }
+@keyframes sweep { 0%,18% { stroke-dashoffset:500; } 44%,100% { stroke-dashoffset:-500; } }
+@media (hover:hover) and (pointer:fine) { .scrollDraw.entered:hover .glyph, .intro.entered:hover .glyph { animation:draw 550ms ease-out both, fillIn 550ms ease-out both; } }
+@media (prefers-reduced-motion:reduce) { .pull,.svg,.glyph,.shimmer,.sweepPath { animation:none !important; transition:none !important; transform:none !important; } .glyph { stroke-dashoffset:0 !important; fill-opacity:1 !important; } .shimmer { display:none; } }
